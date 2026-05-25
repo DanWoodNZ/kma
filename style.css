@@ -22,12 +22,18 @@
   padding: 0;
 }
 
-body {
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
   font-family: var(--font-body);
   background-color: var(--bg-color);
   color: var(--text-color);
-  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+}
+
+body {
+  overflow-x: hidden;
 }
 
 /* Typography */
@@ -1547,7 +1553,7 @@ a:hover {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   background: rgba(0, 0, 0, 0.95);
   z-index: 2000;
   display: flex;
@@ -1651,6 +1657,12 @@ a:hover {
     padding: 2rem;
     border-right: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .project-left-col-inner {
+    position: relative;
+    top: 0;
+    height: auto;
   }
 
   .single-project-title {
@@ -1862,6 +1874,10 @@ a:hover {
   .team-hero {
     height: 40vh;
   }
+  
+  .hero-new, .single-project-hero {
+    height: 70dvh;
+  }
 }
 
 /* --- Mobile Navigation --- */
@@ -1880,7 +1896,7 @@ a:hover {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   background: rgba(10, 10, 10, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -1921,7 +1937,7 @@ a:hover {
 
 .mobile-menu-contact {
   position: absolute;
-  bottom: 4rem;
+  bottom: 8rem;
   left: 0;
   width: 100%;
   display: flex;
