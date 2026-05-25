@@ -10,12 +10,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Global Scroll Fade Observer
-  const globalFadeObserver = new IntersectionObserver((entries) => {
+  const globalFadeObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('in-view');
-      } else if (entry.boundingClientRect.top > 0) {
-        entry.target.classList.remove('in-view');
+        observer.unobserve(entry.target);
       }
     });
   }, { root: null, rootMargin: '0px 0px -5% 0px', threshold: 0.05 });
