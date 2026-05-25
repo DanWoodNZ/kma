@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Details | KMA</title>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    html,
+    body {
+      background-color: #0a0a0a;
+      color: #ffffff;
+    }
+
+    body {
+      opacity: 0;
+      transition: opacity 0.4s ease-in-out;
+    }
+
+    body.loaded {
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body class="page-single-project">
+  <!-- Sticky Navigation -->
+  <nav id="main-nav" class="fixed-nav">
+    <div class="container nav-container">
+      <div class="nav-brand always-visible">
+        <a href="/">
+          <img src="/kma-logo.svg" alt="KMA Logo" class="nav-logo"
+            onerror="this.src='/vite.svg'; this.style.filter='grayscale(1) invert(1)';">
+        </a>
+      </div>
+      <div class="nav-links">
+        <a href="/projects.html" class="nav-link active">Projects</a>
+        <a href="/team.html" class="nav-link">Team</a>
+        <a href="mailto:enquiries@kma.co.nz" class="btn nav-contact-btn">Get In Touch</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Full Screen Hero -->
+  <header class="single-project-hero" id="project-hero-bg">
+    <div class="hero-overlay"></div>
+    <div class="container hero-title-container">
+      <h1 class="single-project-title" id="project-title"></h1>
+    </div>
+  </header>
+
+  <!-- Split Screen Layout Container -->
+  <div class="single-project-container">
+
+    <!-- Left Column (Fixed Metadata) -->
+    <aside class="project-left-col">
+      <div class="project-metadata-panel">
+        <div>
+          <a href="/projects.html" class="back-link"><i data-lucide="arrow-left"></i> All projects</a>
+          <h2 class="metadata-heading" id="project-sidebar-title">Project overview</h2>
+        </div>
+        <ul class="metadata-list" id="project-metadata-list">
+          <!-- Metadata rendered here via JS -->
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Right Column (Scrolling Content) -->
+    <main class="project-right-col">
+      <div class="project-content-inner">
+        <p class="single-project-description fade-up" id="project-description"></p>
+
+        <div class="project-gallery-masonry" id="project-gallery">
+          <!-- Masonry columns rendered here via JS -->
+        </div>
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Lightbox Overlay -->
+  <div class="lightbox-overlay" id="lightbox-overlay">
+    <button class="lightbox-close" id="lightbox-close"><i data-lucide="x"></i></button>
+    <button class="lightbox-nav lightbox-prev" id="lightbox-prev"><i data-lucide="chevron-left"></i></button>
+    <button class="lightbox-nav lightbox-next" id="lightbox-next"><i data-lucide="chevron-right"></i></button>
+
+    <div class="lightbox-content">
+      <img src="" alt="Project Image" id="lightbox-image">
+    </div>
+
+    <div class="lightbox-counter" id="lightbox-counter"></div>
+  </div>
+
+  <script type="module" src="/main.js"></script>
+</body>
+
+</html>
