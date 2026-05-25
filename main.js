@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } else if (entry.boundingClientRect.top > 0) {
         entry.target.classList.remove('in-view');
       }
+    });
   }, { root: null, rootMargin: '0px 0px -5% 0px', threshold: 0.05 });
 
   // Will observe later after DOM is fully ready if needed, 
