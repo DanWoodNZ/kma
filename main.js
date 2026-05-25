@@ -372,7 +372,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --- Team Page Logic ---
-  const isTeamPage = window.location.pathname.includes('team.html');
+  const currentPath = window.location.pathname;
+  const isTeamPage = currentPath.endsWith('team.html') || currentPath.endsWith('/team');
   if (isTeamPage) {
     const teamData = [
       {
@@ -474,7 +475,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --- Single Project Page Logic ---
-  const isProjectPage = window.location.pathname.includes('project.html');
+  const isProjectPage = currentPath.endsWith('project.html') || currentPath.endsWith('/project');
   if (isProjectPage) {
     const urlParams = new URLSearchParams(window.location.search);
     const projectId = parseInt(urlParams.get('id'), 10) || 1; 
