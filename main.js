@@ -17,8 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } else if (entry.boundingClientRect.top > 0) {
         entry.target.classList.remove('in-view');
       }
-    });
-  }, { root: null, rootMargin: '-10% 0px -10% 0px', threshold: 0.15 });
+  }, { root: null, rootMargin: '0px 0px -5% 0px', threshold: 0.05 });
 
   // Will observe later after DOM is fully ready if needed, 
   // but we can just select them now
@@ -41,11 +40,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Timeline Scroll Animation
   const observerOptions = {
     root: null,
-    rootMargin: '-30% 0px -30% 0px',
-    threshold: 0.6 
+    rootMargin: '-20% 0px -20% 0px',
+    threshold: 0.4 
   };
 
   const timelineObserver = new IntersectionObserver((entries) => {
@@ -634,5 +632,42 @@ document.addEventListener('DOMContentLoaded', () => {
       projectTitle.style.transform = `translateY(${translateY}px)`;
     }
   });
+
+  // --- Mobile Menu Logic ---
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+  const mobileMenuIcon = document.getElementById('mobile-menu-icon');
+
+  if (mobileMenuBtn && mobileMenuOverlay && mobileMenuIcon) {
+    mobileMenuBtn.addEventListener('click', () => {
+      const isActive = mobileMenuOverlay.classList.contains('active');
+      
+      if (isActive) {
+        mobileMenuOverlay.classList.remove('active');
+        document.body.classList.remove('no-scroll');
+        mobileMenuIcon.setAttribute('data-lucide', 'menu');
+      } else {
+        mobileMenuOverlay.classList.add('active');
+        document.body.classList.add('no-scroll');
+        mobileMenuIcon.setAttribute('data-lucide', 'x');
+      }
+      
+      if (typeof lucide !== 'undefined') {
+        lucide.createIcons({ root: mobileMenuBtn });
+      }
+    });
+
+    const mobileLinks = mobileMenuOverlay.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenuOverlay.classList.remove('active');
+        document.body.classList.remove('no-scroll');
+        mobileMenuIcon.setAttribute('data-lucide', 'menu');
+        if (typeof lucide !== 'undefined') {
+          lucide.createIcons({ root: mobileMenuBtn });
+        }
+      });
+    });
+  }
 
 });
