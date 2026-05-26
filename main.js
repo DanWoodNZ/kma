@@ -1,6 +1,114 @@
 import './style.css';
 
 document.addEventListener('DOMContentLoaded', () => {
+  // --- Full Screen Preloader (Lottie) ---
+  const loaderContainer = document.getElementById('lottie-container');
+  let lottieAnimation = null;
+  
+  if (loaderContainer && typeof lottie !== 'undefined') {
+    lottieAnimation = lottie.loadAnimation({
+      container: loaderContainer,
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      path: '/kma-loader.json'
+    });
+  }
+
+  // Loader timing variables
+  let minTimeElapsed = false;
+  let pageLoaded = false;
+  let videoLoaded = false;
+  let loaderDismissed = false;
+
+  function checkAndHideLoader() {
+    if (loaderDismissed) return;
+    
+    // Hide only if all conditions met: min time elapsed AND page fully loaded AND hero video ready
+    if (minTimeElapsed && pageLoaded && videoLoaded) {
+      loaderDismissed = true;
+      
+      const loader = document.getElementById('site-loader');
+      const lottieContainer = document.getElementById('lottie-container');
+      
+      // Stage 1: Fade out the Lottie player container first
+      if (lottieContainer) {
+        lottieContainer.classList.add('fade-out');
+      }
+      
+      // Stage 2: After the Lottie player finishes fading out, fade out the background overlay
+      setTimeout(() => {
+        if (loader) {
+          loader.classList.add('fade-out');
+        }
+        
+        // Remove 'loading' and add 'loading-reveal' to trigger logo & nav entry animations
+        document.body.classList.add('loading-reveal');
+        document.body.classList.remove('loading');
+        
+        // Destroy the animation after it fades out to save CPU
+        setTimeout(() => {
+          if (lottieAnimation) {
+            lottieAnimation.destroy();
+          }
+        }, 1000);
+        
+        // Clean up: Remove loading-reveal class after transition is fully complete
+        // so that normal scroll transitions behave normally afterwards
+        setTimeout(() => {
+          document.body.classList.remove('loading-reveal');
+        }, 3000);
+      }, 800);
+    }
+  }
+
+  // 1. Min 4s Timer
+  setTimeout(() => {
+    minTimeElapsed = true;
+    checkAndHideLoader();
+  }, 4000);
+
+  // 2. Page Window Load Event
+  window.addEventListener('load', () => {
+    pageLoaded = true;
+    checkAndHideLoader();
+  });
+  // Fallback if load fires before listener is registered
+  if (document.readyState === 'complete') {
+    pageLoaded = true;
+  }
+
+  // 3. Hero Video load check
+  const heroVideo = document.querySelector('.hero-bg-video');
+  if (heroVideo) {
+    if (heroVideo.readyState >= 3) { // HAVE_FUTURE_DATA or higher
+      videoLoaded = true;
+      checkAndHideLoader();
+    } else {
+      heroVideo.addEventListener('canplaythrough', () => {
+        videoLoaded = true;
+        checkAndHideLoader();
+      });
+      // Safety fallbacks
+      heroVideo.addEventListener('error', () => {
+        videoLoaded = true;
+        checkAndHideLoader();
+      });
+    }
+  } else {
+    videoLoaded = true;
+  }
+
+  // 4. Global safety timeout (force hide preloader after 8s so user is never stuck)
+  setTimeout(() => {
+    if (!loaderDismissed) {
+      minTimeElapsed = true;
+      pageLoaded = true;
+      videoLoaded = true;
+      checkAndHideLoader();
+    }
+  }, 8000);
+
   // Add loaded class to body to trigger fade-in and prevent FOUC
   setTimeout(() => document.body.classList.add('loaded'), 50);
 
@@ -222,20 +330,69 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Projects Data & Rendering Logic ---
   const projectsData = [
     {
+      id: 4,
+      title: "Hilton Hotel Development",
+      category: "Commercial — Hospitality",
+      type: "Commercial",
+      location: "Princes Wharf, Auckland",
+      year: "2023",
+      size: "24,500 m²",
+      image: "/projects/hilton-01.jpeg",
+      description: "A premium luxury hotel refurbishment and development management project, introducing high-end suites and modern amenities at the edge of Auckland's historic Princes Wharf waterfront.",
+      metadata: [
+        { key: "Client", value: "Princes Wharf Holdings" },
+        { key: "Type", value: "Commercial" },
+        { key: "Year", value: "2023" },
+        { key: "Size", value: "24,500 m²" },
+        { key: "Floors", value: "8" },
+        { key: "Location", value: "Princes Wharf, Auckland" },
+        { key: "Services", value: "Development Management" },
+        { key: "Status", value: "Complete" }
+      ],
+      gallery: [
+        "/projects/hilton-01.jpeg", "/projects/hilton-02.jpeg", "/projects/hilton-03.jpeg", "/projects/hilton-04.jpeg",
+        "/projects/hilton-01.jpeg", "/projects/hilton-02.jpeg", "/projects/hilton-03.jpeg", "/projects/hilton-04.jpeg"
+      ]
+    },
+    {
+      id: 5,
+      title: "The Stables Redevelopment",
+      category: "Residential — Heritage",
+      type: "Residential",
+      location: "Matakana, Auckland",
+      year: "2024",
+      size: "1,800 m²",
+      image: "/projects/stables-01.jpeg",
+      description: "A sensitive restoration and adaptive reuse of a historic stables estate into a boutique luxury residential precinct, blending heritage brickwork with high-performance modern insulation and amenities.",
+      metadata: [
+        { key: "Client", value: "Private Estate" },
+        { key: "Type", value: "Residential" },
+        { key: "Year", value: "2024" },
+        { key: "Size", value: "1,800 m²" },
+        { key: "Location", value: "Matakana, Auckland" },
+        { key: "Services", value: "Project Management, Planning" },
+        { key: "Status", value: "Complete" }
+      ],
+      gallery: [
+        "/projects/stables-01.jpeg", "/projects/stables-02.jpeg", "/projects/stables-03.jpeg", "/projects/stables-04.jpeg",
+        "/projects/stables-01.jpeg", "/projects/stables-02.jpeg", "/projects/stables-03.jpeg", "/projects/stables-04.jpeg"
+      ]
+    },
+    {
       id: 1,
       title: "Skyline Corporate Hub",
       category: "Commercial — Office",
       type: "Commercial",
       location: "Central Business District",
       year: "2022",
-      size: "350,000 sq. ft.",
+      size: "32,500 m²",
       image: "/projects/skyline-01.jpg",
       description: "A forward-thinking real estate developer specializing in premium commercial spaces sought to create a multi-storied office complex that redefines modern work environments. Their vision included innovative design, sustainability, and high-end facilities tailored to the needs of dynamic businesses.",
       metadata: [
         { key: "Client", value: "Confidential" },
         { key: "Type", value: "Commercial" },
         { key: "Year", value: "2022" },
-        { key: "Size", value: "350,000 sq. ft." },
+        { key: "Size", value: "32,500 m²" },
         { key: "Floors", value: "20" },
         { key: "Location", value: "Central Business District" },
         { key: "Services", value: "Architecture, Interior" },
@@ -253,14 +410,14 @@ document.addEventListener('DOMContentLoaded', () => {
       type: "Residential",
       location: "Waterfront District",
       year: "2024",
-      size: "420,000 sq. ft.",
+      size: "39,000 m²",
       image: "/projects/zenith-01.jpg",
       description: "Located in the heart of the waterfront district, Zenith Residential Towers offers an unparalleled living experience. The project focuses on maximizing natural light and providing expansive views, all while maintaining a minimal environmental footprint.",
       metadata: [
         { key: "Client", value: "Zenith Holdings" },
         { key: "Type", value: "Residential" },
         { key: "Year", value: "2024" },
-        { key: "Size", value: "420,000 sq. ft." },
+        { key: "Size", value: "39,000 m²" },
         { key: "Floors", value: "35" },
         { key: "Location", value: "Waterfront District" },
         { key: "Services", value: "Architecture, Planning" },
@@ -278,14 +435,14 @@ document.addEventListener('DOMContentLoaded', () => {
       type: "Others",
       location: "Westside Corridor",
       year: "2023",
-      size: "600,000 sq. ft.",
+      size: "55,700 m²",
       image: "/projects/horizon-01.jpg",
       description: "Designed for the future of logistics and technology, Horizon Tech Park integrates highly efficient warehousing with cutting-edge office environments. The layout promotes seamless workflow and incorporates extensive green spaces.",
       metadata: [
         { key: "Client", value: "Global Logistics Ltd" },
         { key: "Type", value: "Industrial" },
         { key: "Year", value: "2023" },
-        { key: "Size", value: "600,000 sq. ft." },
+        { key: "Size", value: "55,700 m²" },
         { key: "Location", value: "Westside Corridor" },
         { key: "Services", value: "Architecture, Masterplanning" },
         { key: "Status", value: "Complete" }
@@ -308,7 +465,10 @@ document.addEventListener('DOMContentLoaded', () => {
         ? projectsData 
         : projectsData.filter(p => p.type === filterType);
         
-      filtered.forEach((project, index) => {
+      const isHomepage = projectsGrid.classList.contains('homepage-projects-grid');
+      const projectsToRender = isHomepage ? filtered.slice(0, 3) : filtered;
+
+      projectsToRender.forEach((project, index) => {
         const delayClass = `delay-${(index % 8) + 1}`; 
         
         const cardHTML = `
@@ -377,65 +537,65 @@ document.addEventListener('DOMContentLoaded', () => {
       {
         id: 1,
         name: "Sarah Williams",
-        role: "Senior Architect",
-        qualifications: "M.Arch, AIA",
-        expertise: "Commercial & Civic Design",
+        role: "Senior Project Manager",
+        qualifications: "M.Arch, PMP",
+        expertise: "Commercial & Infrastructure",
         imageUrl: "/team/team_member_1.png"
       },
       {
         id: 2,
         name: "David Chen",
-        role: "Urban Planner",
-        qualifications: "MUP, AICP",
-        expertise: "Masterplanning & Sustainability",
+        role: "Senior Development Advisor",
+        qualifications: "B.Prop, MPINZ",
+        expertise: "Feasibility & Site Analysis",
         imageUrl: "/team/team_member_2.png"
       },
       {
         id: 3,
         name: "Elena Rodriguez",
-        role: "Interior Designer",
-        qualifications: "B.F.A. Interior Design",
-        expertise: "Hospitality & Retail",
+        role: "Design & Interface Manager",
+        qualifications: "B.Arch, ANZIA",
+        expertise: "Client Interface & Fitout",
         imageUrl: "/team/team_member_3.png"
       },
       {
         id: 4,
         name: "Marcus Johnson",
-        role: "Project Manager",
-        qualifications: "PMP, B.S. Construction",
-        expertise: "Delivery & Risk Management",
+        role: "Senior Quantity Surveyor",
+        qualifications: "B.Const, MNZIQS",
+        expertise: "Cost Control & Estimating",
         imageUrl: "/team/team_member_4.png"
       },
       {
         id: 5,
         name: "Aisha Patel",
-        role: "Structural Engineer",
-        qualifications: "M.S. Structural Engineering, PE",
-        expertise: "Industrial & Mixed-Use",
+        role: "Project Director",
+        qualifications: "B.E. Civil, PMP",
+        expertise: "Project Lifecycle & Delivery",
         imageUrl: "/team/team_member_5.png"
       },
       {
         id: 6,
         name: "Tomoko Sato",
-        role: "Sustainability Consultant",
-        qualifications: "LEED AP BD+C",
-        expertise: "Green Building & Efficiency",
+        role: "Development Advisory Specialist",
+        qualifications: "M.Prop, MPINZ",
+        expertise: "Property Due Diligence",
         imageUrl: "/team/team_member_6.png"
       },
       {
         id: 7,
         name: "James Nguyen",
-        role: "Architectural Technologist",
-        qualifications: "B.A.Sc. Architectural Science",
-        expertise: "BIM & Digital Modeling",
+        role: "Project Controls Manager",
+        qualifications: "B.Com, PMP",
+        expertise: "Scheduling & Risk Analysis",
         imageUrl: "/team/team_member_7.png"
       },
       {
         id: 8,
         name: "Chloe Bennett",
-        role: "Landscape Architect",
-        qualifications: "MLA, ASLA",
-        expertise: "Urban Realm & Masterplanning",
+        role: "Senior Project Manager",
+        qualifications: "B.Const, MNZIOB",
+        expertise: "Contract Administration",
         imageUrl: "/team/team_member_8.png"
       }
     ];
@@ -631,6 +791,21 @@ document.addEventListener('DOMContentLoaded', () => {
       projectTitle.style.opacity = opacity;
       projectTitle.style.transform = `translateY(${translateY}px)`;
     }
+
+    // Team Page hero background parallax
+    const teamHeroBg = document.getElementById('team-hero-bg');
+    if (teamHeroBg) {
+      teamHeroBg.style.backgroundPositionY = `calc(50% + ${scrolled * 0.4}px)`;
+    }
+    
+    // Team Page Title fade and slide
+    const teamHeroTitle = document.getElementById('team-hero-title');
+    if (teamHeroTitle) {
+      const opacity = Math.max(0, 1 - scrolled / 400);
+      const translateY = Math.min(50, scrolled * 0.15);
+      teamHeroTitle.style.opacity = opacity;
+      teamHeroTitle.style.transform = `translateY(${translateY}px)`;
+    }
   });
 
   // --- Mobile Menu Logic ---
@@ -666,6 +841,102 @@ document.addEventListener('DOMContentLoaded', () => {
         if (typeof lucide !== 'undefined') {
           lucide.createIcons({ root: mobileMenuBtn });
         }
+      });
+    });
+  }
+
+  // --- Testimonials Slider Logic ---
+  const testimonialsContainers = document.querySelectorAll('.testimonials-container');
+  if (testimonialsContainers.length > 0) {
+    const testimonialsData = [
+      {
+        quote: "Kyle and the KMA team provided outstanding leadership on our commercial development. Their proactive communication and 'no surprises' approach kept the project on track and under budget.",
+        clientName: "Mark Harrison",
+        clientBusiness: "Harrison Properties Ltd",
+        projectImage: "/projects/skyline-01.jpg"
+      },
+      {
+        quote: "KMA's advisory services were instrumental in securing resource consents and managing feasibility for our residential project. Their expertise is unmatched.",
+        clientName: "Sarah Jenkins",
+        clientBusiness: "Zenith Residential Group",
+        projectImage: "/projects/zenith-01.jpg"
+      },
+      {
+        quote: "Highly professional and collaborative. The team navigated complex site logic and delivered a state-of-the-art facility. We look forward to partnering again.",
+        clientName: "David Vance",
+        clientBusiness: "Global Tech Logistics",
+        projectImage: "/projects/horizon-01.jpg"
+      }
+    ];
+
+    testimonialsContainers.forEach(container => {
+      let html = `
+        <div class="testimonial-slider-wrap">
+          <div class="testimonial-slides">
+      `;
+      
+      testimonialsData.forEach((item, index) => {
+        html += `
+            <div class="testimonial-slide ${index === 0 ? 'active' : ''}" data-index="${index}">
+              <div class="testimonial-card-grid">
+                <div class="testimonial-image-col">
+                  <div class="testimonial-img-wrapper">
+                    <img src="${item.projectImage}" alt="${item.clientBusiness} Project" class="testimonial-img">
+                  </div>
+                </div>
+                <div class="testimonial-content-col">
+                  <div class="testimonial-quote-icon">“</div>
+                  <blockquote class="testimonial-quote-text">${item.quote}</blockquote>
+                  <div class="testimonial-meta-info">
+                    <cite class="testimonial-client-name">${item.clientName}</cite>
+                    <span class="testimonial-client-business">${item.clientBusiness}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+        `;
+      });
+
+      html += `
+          </div>
+          <div class="testimonial-controls">
+            <button class="testimonial-control-btn prev-testimonial" aria-label="Previous testimonial">
+              <i data-lucide="arrow-left"></i>
+            </button>
+            <span class="testimonial-indicator">1 / ${testimonialsData.length}</span>
+            <button class="testimonial-control-btn next-testimonial" aria-label="Next testimonial">
+              <i data-lucide="arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      `;
+
+      container.innerHTML = html;
+
+      // Initialize Lucide icons inside this container
+      if (typeof lucide !== 'undefined') {
+        lucide.createIcons({ root: container });
+      }
+
+      let currentIndex = 0;
+      const slides = container.querySelectorAll('.testimonial-slide');
+      const indicator = container.querySelector('.testimonial-indicator');
+
+      const updateSlider = (newIndex) => {
+        slides[currentIndex].classList.remove('active');
+        currentIndex = newIndex;
+        slides[currentIndex].classList.add('active');
+        indicator.textContent = `${currentIndex + 1} / ${testimonialsData.length}`;
+      };
+
+      container.querySelector('.prev-testimonial').addEventListener('click', () => {
+        const newIndex = (currentIndex - 1 + testimonialsData.length) % testimonialsData.length;
+        updateSlider(newIndex);
+      });
+
+      container.querySelector('.next-testimonial').addEventListener('click', () => {
+        const newIndex = (currentIndex + 1) % testimonialsData.length;
+        updateSlider(newIndex);
       });
     });
   }

@@ -26,9 +26,16 @@
       opacity: 1;
     }
   </style>
+  <!-- Lottie Player -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
 </head>
 
-<body>
+<body class="loading">
+  <!-- Full Screen Loader -->
+  <div id="site-loader" class="site-loader">
+    <div id="lottie-container" class="lottie-container"></div>
+  </div>
+
   <!-- Sticky Navigation -->
   <nav id="main-nav" class="fixed-nav">
     <div class="container nav-container">
@@ -69,21 +76,24 @@
   </header>
 
   <!-- About Us / The KMA Approach -->
-  <section id="about" class="section about-section container">
-    <div class="about-statement-wrapper">
-      <p class="about-statement fade-up">Kyle Mingins Advisory (KMA) is an independent, award-winning property
-        consultancy
-        delivering excellence since 2025.</p>
-      <div class="about-text-blocks">
-        <div class="text-block fade-up delay-1">
-          <p>Led by Kyle Mingins, the team has decades of collective 'boots on the ground' industry experience providing
-            best-in-class project leadership. The director takes a hands-on approach to underpin a quality-based
-            delivery.</p>
-        </div>
-        <div class="text-block fade-up delay-2">
-          <p>A proven track record of delivering successful projects regardless of complexity through an anchored, 'no
-            surprises' approach. The focus is on proactive collaboration, listening to clients, and ensuring outstanding
-            results.</p>
+  <section id="about" class="section about-section theme-off-black">
+    <div class="container">
+      <div class="about-statement-wrapper">
+        <p class="about-statement fade-up">Kyle Mingins Advisory (KMA) is an independent, award-winning property
+          consultancy delivering excellence since 2025.</p>
+        <div class="about-text-blocks">
+          <div class="text-block fade-up delay-1">
+            <p>Led by Kyle Mingins, the team has decades of collective 'boots on the ground' industry experience
+              providing
+              best-in-class project leadership. The director takes a hands-on approach to underpin a quality-based
+              delivery.</p>
+          </div>
+          <div class="text-block fade-up delay-2">
+            <p>A proven track record of delivering successful projects regardless of complexity through an anchored, 'no
+              surprises' approach. We focus on proactive collaboration, listening to clients, and ensuring
+              outstanding
+              results.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -92,7 +102,11 @@
   <!-- Services & Expertise Section -->
   <section id="expertise" class="section expertise-section container">
     <div class="section-header fade-up">
-      <h2>Services</h2>
+      <div class="eyebrow-pill">
+        <i data-lucide="briefcase"></i> Services
+      </div>
+      <h2 class="section-heading-text">We provide comprehensive, end-to-end property advisory and project leadership
+        services.</h2>
     </div>
     <div class="expertise-list">
 
@@ -100,7 +114,7 @@
         <div class="card-top">
           <div class="card-num">01</div>
           <div class="card-illustration-small">
-            <i data-lucide="briefcase"></i>
+            <img src="/development-management.svg" alt="Development Management Icon">
           </div>
         </div>
         <div class="card-content-wrap">
@@ -118,7 +132,7 @@
         <div class="card-top">
           <div class="card-num">02</div>
           <div class="card-illustration-small">
-            <i data-lucide="clipboard-list"></i>
+            <img src="/project-management.svg" alt="Project Management Icon">
           </div>
         </div>
         <div class="card-content-wrap">
@@ -135,7 +149,7 @@
         <div class="card-top">
           <div class="card-num">03</div>
           <div class="card-illustration-small">
-            <i data-lucide="map"></i>
+            <img src="/planning-advisory.svg" alt="Planning & Advisory Icon">
           </div>
         </div>
         <div class="card-content-wrap">
@@ -151,7 +165,11 @@
 
     <div class="specializations-wrapper">
       <div class="section-header fade-up">
-        <h2>Industries</h2>
+        <div class="eyebrow-pill">
+          <i data-lucide="building-2"></i> Industries
+        </div>
+        <h2 class="section-heading-text">Our expertise spans across diverse sectors, delivering projects tailored to
+          unique operational demands.</h2>
       </div>
 
       <div class="spec-grid-new">
@@ -202,13 +220,29 @@
   </section>
 
   <!-- Portfolio & Testimonials Section -->
-  <section id="portfolio" class="section portfolio-section container">
-    <div class="section-header fade-up">
-      <h2>Recent projects</h2>
-    </div>
+  <section id="portfolio" class="section portfolio-section theme-sandy">
+    <div class="container">
+      <div class="section-header fade-up">
+        <div class="eyebrow-pill">
+          <i data-lucide="brick-wall"></i> Recent projects
+        </div>
+        <h2 class="section-heading-text">A showcase of our recent project leadership, managing risk and quality from
+          inception to completion.</h2>
+      </div>
 
-    <div class="project-list" id="projects-grid">
-      <!-- Projects will be rendered here dynamically -->
+      <div class="homepage-projects-grid" id="projects-grid">
+        <!-- Projects will be rendered here dynamically -->
+      </div>
+      <div class="text-center mt-4 fade-up">
+        <a href="/projects.html" class="btn">All projects</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="section testimonials-section theme-white">
+    <div class="container testimonials-container">
+      <!-- Testimonials rendered dynamically from main.js -->
     </div>
   </section>
 
@@ -217,7 +251,11 @@
   <!-- Process Section -->
   <section id="process" class="section process-section container">
     <div class="section-header fade-up">
-      <h2>Our process</h2>
+      <div class="eyebrow-pill">
+        <i data-lucide="activity"></i> Our process
+      </div>
+      <h2 class="section-heading-text">We follow a clear, structured methodology to ensure seamless delivery and
+        no-surprises execution.</h2>
     </div>
 
     <div class="process-timeline fade-up delay-1">
@@ -283,8 +321,12 @@
 
   <!-- Stats Section -->
   <section id="impact" class="section stats-section container">
-    <div class="stats-title text-center fade-up">
-      <h2>Impact</h2>
+    <div class="section-header text-center fade-up">
+      <div class="eyebrow-pill">
+        <i data-lucide="award"></i> Impact
+      </div>
+      <h2 class="section-heading-text">Our track record is defined by successful project outcomes and lasting client
+        partnerships.</h2>
     </div>
     <div class="stats-grid-row">
 
@@ -296,19 +338,19 @@
 
       <div class="stat-card fade-up delay-2">
         <div class="stat-number">18</div>
-        <div class="stat-label">Years In Business</div>
+        <div class="stat-label">Years of experience</div>
         <div class="stat-desc">Blending function with lasting form.</div>
       </div>
 
       <div class="stat-card fade-up delay-3">
-        <div class="stat-number">26</div>
+        <div class="stat-number">4</div>
         <div class="stat-label">Awards For Design</div>
         <div class="stat-desc">Recognized locally and internationally.</div>
       </div>
 
       <div class="stat-card fade-up delay-4">
-        <div class="stat-number">12</div>
-        <div class="stat-label">Expert On Board</div>
+        <div class="stat-number">6</div>
+        <div class="stat-label">Experts On Board</div>
         <div class="stat-desc">Architects, planners, and creatives.</div>
       </div>
 
@@ -345,7 +387,7 @@
       </div>
     </div>
     <div class="container footer-bottom fade-up delay-4">
-      <p>&copy; 2026 KMA (2025) Limited. All Rights Reserved.</p>
+      <p>2026 KMA Limited &copy; All Rights Reserved.</p>
     </div>
   </footer>
 
