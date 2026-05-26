@@ -967,7 +967,11 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       
       if (targetElement) {
-        const yPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+        // Offset scroll position by the height of the fixed navigation bar to prevent overlap
+        const nav = document.getElementById('main-nav');
+        const navHeight = nav ? nav.offsetHeight : 80;
+        const yPosition = targetElement.getBoundingClientRect().top + window.scrollY - navHeight;
+        
         window.scrollTo({
           top: yPosition,
           behavior: 'smooth'
