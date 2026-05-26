@@ -158,7 +158,7 @@ a:hover {
   background: rgba(10, 10, 10, 0.75);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  padding: 1rem 0;
+  padding: 2rem 0;
 }
 
 .nav-container {
@@ -2546,7 +2546,8 @@ body.loading .hero-logo {
 .hero-scroll-btn {
   position: absolute;
   bottom: 3rem;
-  right: 50px; /* Aligns with container padding */
+  right: 50px;
+  /* Aligns with container padding */
   width: 50px;
   height: 50px;
   display: flex;
@@ -2588,6 +2589,7 @@ body.loading .hero-logo {
     width: 44px;
     height: 44px;
   }
+
   .hero-scroll-btn i {
     width: 18px;
     height: 18px;
