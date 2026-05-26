@@ -949,4 +949,31 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // --- Floating Hero Scroll Down Button ---
+  const heroScrollBtn = document.getElementById('hero-scroll-btn');
+  if (heroScrollBtn) {
+    heroScrollBtn.addEventListener('click', () => {
+      let targetElement = null;
+      
+      if (document.querySelector('.single-project-container')) {
+        // Project page next section
+        targetElement = document.querySelector('.single-project-container');
+      } else if (document.getElementById('about')) {
+        // Home page next section
+        targetElement = document.getElementById('about');
+      } else if (document.querySelector('.history-founder-section')) {
+        // Team page next section
+        targetElement = document.querySelector('.history-founder-section');
+      }
+      
+      if (targetElement) {
+        const yPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({
+          top: yPosition,
+          behavior: 'smooth'
+        });
+      }
+    });
+  }
+
 });

@@ -1490,14 +1490,14 @@ a:hover {
   z-index: 3;
   padding-bottom: 4rem;
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 
 .single-project-title {
   font-family: var(--font-heading);
   font-size: clamp(2.5rem, 5vw, 4.5rem);
   line-height: 1.1;
-  text-align: right;
+  text-align: left;
   max-width: 70%;
   text-transform: none;
   font-weight: 700;
@@ -2540,4 +2540,56 @@ body.loading .hero-logo {
   transform: translateY(80px);
   opacity: 0;
   transition: none !important;
+}
+
+/* --- Floating Hero Scroll Button --- */
+.hero-scroll-btn {
+  position: absolute;
+  bottom: 3rem;
+  right: 50px; /* Aligns with container padding */
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  color: #ffffff;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+}
+
+.hero-scroll-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(2px);
+}
+
+.hero-scroll-btn i {
+  width: 20px;
+  height: 20px;
+  color: #ffffff;
+}
+
+@media (max-width: 1024px) {
+  .hero-scroll-btn {
+    right: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-scroll-btn {
+    bottom: 2rem;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+  }
+  .hero-scroll-btn i {
+    width: 18px;
+    height: 18px;
+  }
 }
