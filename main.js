@@ -967,11 +967,21 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       
       if (targetElement) {
-        // Offset scroll position by the height of the fixed navigation bar to prevent overlap
+        // Measure the height of the navbar in its scrolled (compact) state to prevent landing misalignments
         const nav = document.getElementById('main-nav');
-        const navHeight = nav ? nav.offsetHeight : 80;
-        const yPosition = targetElement.getBoundingClientRect().top + window.scrollY - navHeight;
+        let navHeight = 80;
+        if (nav) {
+          const wasScrolled = nav.classList.contains('scrolled');
+          if (!wasScrolled) {
+            nav.classList.add('scrolled');
+          }
+          navHeight = nav.offsetHeight;
+          if (!wasScrolled) {
+            nav.classList.remove('scrolled');
+          }
+        }
         
+        const yPosition = targetElement.getBoundingClientRect().top + window.scrollY - navHeight;
         window.scrollTo({
           top: yPosition,
           behavior: 'smooth'
