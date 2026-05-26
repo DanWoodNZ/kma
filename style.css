@@ -2501,6 +2501,10 @@ body.loading {
   pointer-events: none;
 }
 
+body.preloader-skipped .site-loader {
+  display: none !important;
+}
+
 .lottie-container {
   width: 300px;
   height: 300px;

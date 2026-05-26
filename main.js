@@ -4,8 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Full Screen Preloader (Lottie) ---
   const loaderContainer = document.getElementById('lottie-container');
   let lottieAnimation = null;
+  const preloaderSkipped = document.body.classList.contains('preloader-skipped');
   
-  if (loaderContainer && typeof lottie !== 'undefined') {
+  if (loaderContainer && typeof lottie !== 'undefined' && !preloaderSkipped) {
     lottieAnimation = lottie.loadAnimation({
       container: loaderContainer,
       renderer: 'svg',
@@ -15,11 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Loader timing variables
-  let minTimeElapsed = false;
-  let pageLoaded = false;
-  let videoLoaded = false;
-  let loaderDismissed = false;
+  // Loader timing variables - initialize as true if preloader is skipped to bypass checks
+  let minTimeElapsed = preloaderSkipped;
+  let pageLoaded = preloaderSkipped;
+  let videoLoaded = preloaderSkipped;
+  let loaderDismissed = preloaderSkipped;
 
   function checkAndHideLoader() {
     if (loaderDismissed) return;
@@ -27,6 +28,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Hide only if all conditions met: min time elapsed AND page fully loaded AND hero video ready
     if (minTimeElapsed && pageLoaded && videoLoaded) {
       loaderDismissed = true;
+      
+      // Save session flag so the loader is skipped on subsequent visits in the same session
+      try {
+        sessionStorage.setItem('kma-preloader-shown', 'true');
+      } catch (e) {
+        console.warn('sessionStorage is not accessible', e);
+      }
       
       const loader = document.getElementById('site-loader');
       const lottieContainer = document.getElementById('lottie-container');
