@@ -769,6 +769,62 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
     
+    // --- Explore Other Projects Section Logic ---
+    const exploreGrid = document.getElementById('explore-projects-grid');
+    if (exploreGrid) {
+      // Find the current project's index in the data array
+      const currentIndex = projectsData.findIndex(p => p.id === projectId);
+      const index = currentIndex !== -1 ? currentIndex : 0;
+      
+      // Determine the next 3 projects in the array, wrapping around if necessary
+      const exploreProjects = [];
+      for (let i = 1; i <= 3; i++) {
+        const nextIndex = (index + i) % projectsData.length;
+        exploreProjects.push(projectsData[nextIndex]);
+      }
+      
+      // Clear container just in case
+      exploreGrid.innerHTML = '';
+      
+      // Render the projects
+      exploreProjects.forEach((project, idx) => {
+        const delayClass = `delay-${(idx % 8) + 1}`;
+        const cardHTML = `
+          <div class="project-card fade-up ${delayClass}" onclick="window.location.href='/project.html?id=${project.id}'">
+            <div class="project-info">
+              <div>
+                <h3 class="project-title">${project.title}</h3>
+                <span class="project-category-pill">${project.category}</span>
+              </div>
+              <ul class="project-meta">
+                <li><i data-lucide="map-pin"></i> ${project.location}</li>
+                <li><i data-lucide="calendar"></i> ${project.year}</li>
+                <li><i data-lucide="maximize"></i> ${project.size}</li>
+              </ul>
+            </div>
+            <div class="project-image-wrapper">
+              <div class="project-image" style="background-image: url('${project.image}')"></div>
+            </div>
+          </div>
+        `;
+        exploreGrid.insertAdjacentHTML('beforeend', cardHTML);
+      });
+      
+      // Re-observe new fade-up elements
+      exploreGrid.querySelectorAll('.fade-up').forEach(el => {
+        globalFadeObserver.observe(el);
+      });
+      
+      // Re-attach custom cursor hover events for new cards
+      const newCards = exploreGrid.querySelectorAll('.project-card');
+      if (cursor && newCards.length > 0) {
+        newCards.forEach(card => {
+          card.addEventListener('mouseenter', () => cursor.classList.add('active'));
+          card.addEventListener('mouseleave', () => cursor.classList.remove('active'));
+        });
+      }
+    }
+    
     // Re-initialize Lucide for newly injected icons
     if (typeof lucide !== 'undefined') {
       setTimeout(() => lucide.createIcons(), 100);
@@ -955,9 +1011,9 @@ document.addEventListener('DOMContentLoaded', () => {
     heroScrollBtn.addEventListener('click', () => {
       let targetElement = null;
       
-      if (document.querySelector('.single-project-container')) {
+      if (document.querySelector('.project-main-wrapper')) {
         // Project page next section
-        targetElement = document.querySelector('.single-project-container');
+        targetElement = document.querySelector('.project-main-wrapper');
       } else if (document.getElementById('about')) {
         // Home page next section
         targetElement = document.getElementById('about');

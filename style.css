@@ -1503,7 +1503,7 @@ a:hover {
   font-weight: 700;
 }
 
-.single-project-container {
+.project-main-wrapper {
   display: flex;
   max-width: 100%;
   padding: 0;
@@ -1769,7 +1769,7 @@ a:hover {
 }
 
 @media (max-width: 900px) {
-  .single-project-container {
+  .project-main-wrapper {
     flex-direction: column;
   }
 
@@ -2593,5 +2593,84 @@ body.loading .hero-logo {
   .hero-scroll-btn i {
     width: 18px;
     height: 18px;
+  }
+}
+
+/* --- Global CTA Component --- */
+.global-cta {
+  position: relative;
+  background-color: var(--accent-color);
+  overflow: hidden;
+  padding: 8rem 0;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.global-cta-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/pattern-bg.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.12; /* subtle pattern blend */
+  pointer-events: none;
+  z-index: 1;
+}
+
+.global-cta-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+  width: 100%;
+}
+
+.global-cta-heading {
+  font-family: var(--font-heading);
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 700;
+  color: #000000;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  max-width: 850px;
+  margin: 0;
+}
+
+.btn-cta {
+  background-color: #000000;
+  color: var(--accent-color);
+  font-weight: 700;
+  border: none;
+  padding: 1.2rem 2.5rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.btn-cta:hover {
+  background-color: #1a1a1a;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  color: var(--accent-color);
+}
+
+@media (max-width: 768px) {
+  .global-cta {
+    padding: 6rem 0;
   }
 }
