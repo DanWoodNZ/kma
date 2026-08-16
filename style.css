@@ -318,9 +318,7 @@ a:hover {
 /* --- Expertise Section (List) --- */
 .expertise-section {
   background-color: var(--bg-color);
-  background-image:
-    radial-gradient(circle at 80% 35%, rgba(255, 255, 255, 0.035) 0%, rgba(255, 255, 255, 0.01) 45%, transparent 75%),
-    radial-gradient(circle at 25% 85%, rgba(255, 255, 255, 0.025) 0%, rgba(255, 255, 255, 0.005) 35%, transparent 65%);
+  background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, transparent 100%);
 }
 
 .expertise-list {
@@ -493,9 +491,7 @@ a:hover {
 /* --- Process Section --- */
 .process-section {
   background-color: var(--bg-color);
-  background-image:
-    radial-gradient(circle at 45% 10%, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.008) 40%, transparent 70%),
-    radial-gradient(circle at 75% 90%, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.005) 30%, transparent 60%);
+  background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.015) 0%, transparent 100%);
 }
 
 .process-timeline {
@@ -674,9 +670,7 @@ a:hover {
 /* --- About Section --- */
 .about-section {
   background-color: var(--bg-off-black);
-  background-image:
-    radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 40%, transparent 70%),
-    radial-gradient(circle at 85% 80%, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.005) 30%, transparent 60%);
+  background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, transparent 100%);
 }
 
 .about-statement-wrapper {
@@ -709,9 +703,7 @@ a:hover {
 /* --- Stats Section (Clean Grid) --- */
 .stats-section {
   background-color: var(--bg-color);
-  background-image:
-    radial-gradient(circle at 50% 100%, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 50%, transparent 80%),
-    radial-gradient(circle at 10% 10%, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.005) 30%, transparent 60%);
+  background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, transparent 100%);
 }
 
 .stats-title.text-center {
@@ -1149,9 +1141,7 @@ a:hover {
 /* --- Expanded Footer --- */
 .footer-expanded {
   background-color: var(--bg-off-black);
-  background-image:
-    radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0.025) 0%, rgba(255, 255, 255, 0.005) 40%, transparent 70%),
-    radial-gradient(circle at 20% 90%, rgba(255, 255, 255, 0.015) 0%, transparent 50%);
+  background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.015) 0%, transparent 100%);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   padding: 6rem 0 0 0;
