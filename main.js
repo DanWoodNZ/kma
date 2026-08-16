@@ -338,126 +338,163 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Projects Data & Rendering Logic ---
   const projectsData = [
     {
-      id: 4,
-      title: "Hilton Hotel Development",
-      category: "Commercial — Hospitality",
-      type: "Commercial",
-      location: "Princes Wharf, Auckland",
-      year: "2023",
-      size: "24,500 m²",
-      image: "/projects/hilton-01.jpeg",
-      description: "A premium luxury hotel refurbishment and development management project, introducing high-end suites and modern amenities at the edge of Auckland's historic Princes Wharf waterfront.",
-      metadata: [
-        { key: "Client", value: "Princes Wharf Holdings" },
-        { key: "Type", value: "Commercial" },
-        { key: "Year", value: "2023" },
-        { key: "Size", value: "24,500 m²" },
-        { key: "Floors", value: "8" },
-        { key: "Location", value: "Princes Wharf, Auckland" },
-        { key: "Services", value: "Development Management" },
-        { key: "Status", value: "Complete" }
-      ],
-      gallery: [
-        "/projects/hilton-01.jpeg", "/projects/hilton-02.jpeg", "/projects/hilton-03.jpeg", "/projects/hilton-04.jpeg",
-        "/projects/hilton-01.jpeg", "/projects/hilton-02.jpeg", "/projects/hilton-03.jpeg", "/projects/hilton-04.jpeg"
-      ]
-    },
-    {
-      id: 5,
-      title: "The Stables Redevelopment",
-      category: "Residential — Heritage",
-      type: "Residential",
-      location: "Matakana, Auckland",
-      year: "2024",
-      size: "1,800 m²",
-      image: "/projects/stables-01.jpeg",
-      description: "A sensitive restoration and adaptive reuse of a historic stables estate into a boutique luxury residential precinct, blending heritage brickwork with high-performance modern insulation and amenities.",
-      metadata: [
-        { key: "Client", value: "Private Estate" },
-        { key: "Type", value: "Residential" },
-        { key: "Year", value: "2024" },
-        { key: "Size", value: "1,800 m²" },
-        { key: "Location", value: "Matakana, Auckland" },
-        { key: "Services", value: "Project Management, Planning" },
-        { key: "Status", value: "Complete" }
-      ],
-      gallery: [
-        "/projects/stables-01.jpeg", "/projects/stables-02.jpeg", "/projects/stables-03.jpeg", "/projects/stables-04.jpeg",
-        "/projects/stables-01.jpeg", "/projects/stables-02.jpeg", "/projects/stables-03.jpeg", "/projects/stables-04.jpeg"
-      ]
-    },
-    {
       id: 1,
-      title: "Skyline Corporate Hub",
-      category: "Commercial — Office",
-      type: "Commercial",
-      location: "Central Business District",
-      year: "2022",
-      size: "32,500 m²",
-      image: "/projects/skyline-01.jpg",
-      description: "A forward-thinking real estate developer specializing in premium commercial spaces sought to create a multi-storied office complex that redefines modern work environments. Their vision included innovative design, sustainability, and high-end facilities tailored to the needs of dynamic businesses.",
-      metadata: [
-        { key: "Client", value: "Confidential" },
-        { key: "Type", value: "Commercial" },
-        { key: "Year", value: "2022" },
-        { key: "Size", value: "32,500 m²" },
-        { key: "Floors", value: "20" },
-        { key: "Location", value: "Central Business District" },
-        { key: "Services", value: "Architecture, Interior" },
-        { key: "Status", value: "Complete" }
-      ],
+      title: "Eden Park (West Stand)",
+      sector: "Sport & Recreation",
+      completion: "2026",
+      value: "$8m",
+      delivery: "ECI Fixed Price",
+      services: "Project Management, Engineer to Contract",
+      status: "Complete",
+      client: "Eden Park Trust",
+      image: "/projects/eden-park-west-stand-1.jpg",
+      description: "Eden Park is setting a new benchmark for the live event experience in New Zealand with the creation of the Coca-Cola Field Club – a permanent field-level hospitality beneath the goalposts.\n\nDelivered October 2026, the Coca-Cola Field Club provides fans, guests and event organisers a new way to experience sport, entertainment and events at New Zealand’s national stadium.\n\nThis inspirational project was delivered in 9 weeks with KMA providing Project Management and Engineer to the Contract services.",
       gallery: [
-        "/projects/skyline-01.jpg", "/projects/skyline-02.jpg", "/projects/skyline-03.jpg", "/projects/skyline-04.jpg", "/projects/skyline-05.jpg",
-        "/projects/skyline-01.jpg", "/projects/skyline-02.jpg", "/projects/skyline-03.jpg", "/projects/skyline-04.jpg", "/projects/skyline-05.jpg"
+        "/projects/eden-park-west-stand-1.jpg", "/projects/eden-park-west-stand-2.jpg", "/projects/eden-park-west-stand-3.jpg"
       ]
     },
     {
       id: 2,
-      title: "Zenith Residential Towers",
-      category: "Residential — Multi-Family",
-      type: "Residential",
-      location: "Waterfront District",
-      year: "2024",
-      size: "39,000 m²",
-      image: "/projects/zenith-01.jpg",
-      description: "Located in the heart of the waterfront district, Zenith Residential Towers offers an unparalleled living experience. The project focuses on maximizing natural light and providing expansive views, all while maintaining a minimal environmental footprint.",
-      metadata: [
-        { key: "Client", value: "Zenith Holdings" },
-        { key: "Type", value: "Residential" },
-        { key: "Year", value: "2024" },
-        { key: "Size", value: "39,000 m²" },
-        { key: "Floors", value: "35" },
-        { key: "Location", value: "Waterfront District" },
-        { key: "Services", value: "Architecture, Planning" },
-        { key: "Status", value: "In Progress" }
-      ],
+      title: "Northern Specialist Centre",
+      sector: "Health",
+      completion: "2025",
+      value: "$8m",
+      delivery: "Fixed Price",
+      services: "Project Management",
+      status: "Complete",
+      client: "Beyond Radiology",
+      image: "/projects/northern-specialist-centre-2.jpg",
+      description: "KMA was engaged as Project Manager to deliver 6 tenancies for Beyond Radiology at their flagship Northern Specialist Centre clinic. Working with Beyond Radiology and Acept, KMA was able to deliver the project ahead of progamme and on budget.",
       gallery: [
-        "/projects/zenith-01.jpg", "/projects/zenith-02.jpg", "/projects/zenith-03.jpg", "/projects/zenith-04.jpg", "/projects/zenith-05.jpg",
-        "/projects/zenith-01.jpg", "/projects/zenith-02.jpg", "/projects/zenith-03.jpg", "/projects/zenith-04.jpg", "/projects/zenith-05.jpg"
+        "/projects/northern-specialist-centre-2.jpg", "/projects/northern-specialist-centre-1.webp"
       ]
     },
     {
       id: 3,
-      title: "Horizon Tech Park",
-      category: "Industrial — Logistics",
-      type: "Others",
-      location: "Westside Corridor",
-      year: "2023",
-      size: "55,700 m²",
-      image: "/projects/horizon-01.jpg",
-      description: "Designed for the future of logistics and technology, Horizon Tech Park integrates highly efficient warehousing with cutting-edge office environments. The layout promotes seamless workflow and incorporates extensive green spaces.",
-      metadata: [
-        { key: "Client", value: "Global Logistics Ltd" },
-        { key: "Type", value: "Industrial" },
-        { key: "Year", value: "2023" },
-        { key: "Size", value: "55,700 m²" },
-        { key: "Location", value: "Westside Corridor" },
-        { key: "Services", value: "Architecture, Masterplanning" },
-        { key: "Status", value: "Complete" }
-      ],
+      title: "Exchange",
+      sector: "Commercial",
+      completion: "2027",
+      value: "Confidential",
+      delivery: "ECI Fixed Price",
+      services: "Project Management, Engineer to Contract",
+      status: "Current",
+      client: "Quattro",
+      image: "/projects/exchange-1.jpg",
+      description: "Rising from the historic site of Auckland’s original stock exchange, and located in the heart of Midtown, Exchange by Alberts offers a distinctive blend of heritage and ambition. A nod to its past and a bold move toward the future, Exchange is where business meets legacy. More than a workplace—it’s a stage for ideas, influence, and impact.\n\nKMA were appointed by Quattro to provide Project Management and Engineer to the Contract services for the refurbishment of this midtown classic.",
       gallery: [
-        "/projects/horizon-01.jpg", "/projects/horizon-02.jpg", "/projects/horizon-03.jpg", "/projects/horizon-04.jpg", "/projects/horizon-05.jpg",
-        "/projects/horizon-01.jpg", "/projects/horizon-02.jpg", "/projects/horizon-03.jpg", "/projects/horizon-04.jpg", "/projects/horizon-05.jpg"
+        "/projects/exchange-1.jpg", "/projects/exchange-2.jpg", "/projects/exchange-3.jpg"
+      ]
+    },
+    {
+      id: 4,
+      title: "Bledisloe House",
+      sector: "Commercial",
+      completion: "2027",
+      value: "Confidential",
+      delivery: "Design & Build",
+      services: "Project Management, Engineer to Contract",
+      status: "Current",
+      client: "MRCB / Quattro",
+      image: "/projects/bledisloe-house-1.jpg",
+      description: "Set to welcome tenants from 2027, the Bledisloe House redevelopment will deliver the curated office environments Quattro Alberts has become known for, including:\n\n- Premium grade commercial office spaces from Levels 2 to 9\n- Dedicated and expansive wellness centre for members\n- Range of meeting, collaboration and venue spaces on Level 1\n- New food destination for Midtown, incorporating a mix of premium eat-street style dining options\n- Myers Lane connection to the Te Waihorotiu Station\n\nLocated directly outside Te Waihorotiu Station, the flagship stop on Auckland’s City Rail Link, Bledisloe House will benefit from significantly improved rapid transit connectivity once the rail project is complete.\n\nKMA provides Project Management and Engineer to the Contract Services for MRCB and Quattro.",
+      gallery: [
+        "/projects/bledisloe-house-1.jpg", "/projects/bledisloe-house-2.jpg", "/projects/bledisloe-house-3.jpg"
+      ]
+    },
+    {
+      id: 5,
+      title: "The Stables - Parkview",
+      sector: "Residential",
+      completion: "2027",
+      value: "$35m",
+      delivery: "Design & Build",
+      services: "Project Management, Engineer to Contract",
+      status: "Current",
+      client: "Gleneagle",
+      image: "/projects/the-stables-parkview-1.jpeg",
+      description: "The Stables is the first release within Parkview - a new, design-led precinct beside Cornwall Park. Named for the original raceway stables that once stood here, the building reflects that same sense of structure and permanence - robust, refined and made to last.\n\nDesigned by Paul Brown & Associates, KMA is providing Development Management and Project Management services for the precinct. With design progressing, works are scheduled to commence in 2026.",
+      gallery: [
+        "/projects/the-stables-parkview-1.jpeg", "/projects/the-stables-parkview-2.jpeg", "/projects/the-stables-parkview-3.jpeg"
+      ]
+    },
+    {
+      id: 6,
+      title: "5 Albert Street",
+      sector: "Mixed Use",
+      completion: "2031",
+      value: "Confidential",
+      delivery: "Design & Build",
+      services: "Development Management, Project Management, Advisory",
+      status: "Current",
+      client: "M&L Group",
+      image: "/projects/5-albert-street-1.jpg",
+      description: "The development of 5 Albert Street is a world class mixed use precinct at the home of the former food alley site.\n\nThe Resource Consent allows for the following:\n37 level above ground office building with a total of 34,414m2 NLA\n• Office tower maximum height of 167 metres above ground to maximum RL 177.47m\n• 7 level podium inc 10,404m2 of entry lobby, foyers, end of trip, retail\n• Two levels of basement inc 52 car spaces\n• Retention of exterior façades and upgrades of historic Yates, Berry and Hopkins buildings\n• Covered pedestrian laneway 8m in width inc. vehicle access connecting Federal and Albert Streets\n• Roof terraces to Yates and Berry buildings\n\nKMA has been engaged since 2020 to provide Development Management and Project Management services to M&L Group.",
+      gallery: [
+        "/projects/5-albert-street-1.jpg", "/projects/5-albert-street-2.jpg", "/projects/5-albert-street-3.jpg"
+      ]
+    },
+    {
+      id: 7,
+      title: "Hilton",
+      sector: "Tourism & Leisure",
+      completion: "2025",
+      value: "$10m",
+      delivery: "Fixed Price",
+      services: "Project Management, Engineer to Contract",
+      status: "Complete",
+      client: "M&L Group",
+      image: "/projects/hilton-1.jpg",
+      description: "KMA was engaged in 2022 to assist M&L Group across a wide range of workstreams for the Hilton on Princes Wharf. This included a full reclad of the East & West facades, upgrade of the existing pool deck and refurbishment of major hotel infrastructure.",
+      gallery: [
+        "/projects/hilton-1.jpg", "/projects/hilton-2.jpg", "/projects/hilton-3.jpg"
+      ]
+    },
+    {
+      id: 8,
+      title: "Symphony Centre",
+      sector: "Mixed Use",
+      completion: "2031",
+      value: "Confidential",
+      delivery: "Design & Build",
+      services: "Project Management",
+      status: "Current",
+      client: "MRCB",
+      image: "/projects/symphony-centre-1.webp",
+      description: "Positioned at the heart of midtown’s changing urbanscape will be a magnificent structure nestled between a station and a square - The Symphony Centre development.\n\nLocated at the corner of Wellesley Street and Mayoral Drive, this mixed-use development will encompass residential, commercial, retail, and hospitality to create a dynamic cultural and lifestyle precinct that will reinvigorate Auckland’s Aotea Arts Quarter.\n\nPart of a major inner city regeneration project, The Symphony Centre will include the refurbishment of heritage-listed Bledisloe House and the activation of connecting laneways to form The Lanes.\n\nKMA has been engaged to provide Project Management services for this exciting, city shaping Development.",
+      gallery: [
+        "/projects/symphony-centre-1.webp", "/projects/symphony-centre-2.webp", "/projects/symphony-centre-3.webp"
+      ]
+    },
+    {
+      id: 9,
+      title: "Takanini Industrial",
+      sector: "Industrial",
+      completion: "2028",
+      value: "Confidential",
+      delivery: "Design & Build",
+      services: "Project Management, Engineer to Contract",
+      status: "Current",
+      client: "Confidential",
+      image: "/projects/takanini-industrial.jpg",
+      description: "The Takanini project will include the site clearance and construction of a high-bay – high-span refrigerated industrial unit with the associated low-bay delivery functions and support office space.\n\nKMA has been engaged as Bid lead to assist the Client with appointment of Main Contractor.",
+      gallery: [
+        "/projects/takanini-industrial.jpg"
+      ]
+    },
+    {
+      id: 10,
+      title: "Ormiston Interventional",
+      sector: "Health",
+      completion: "2026",
+      value: "$2.5m",
+      delivery: "Design & Build / Turnkey",
+      services: "Project Management, Engineer to Contract",
+      status: "Complete",
+      client: "Canopy Imaging",
+      image: "/projects/ormiston-interventional-1.jpg",
+      description: "KMA was engaged by Canopy Imaging in 2025 to provide a Design & Build delivery strategy for a 500sqm Interventional Suite at Ormiston Hospital next to their existing tenancy.\n\nWorking with Acept, MA Studio and Edge Interiors, KMA was able to provide a procurement process which enabled the project to be delivered in a fastrack manner.",
+      gallery: [
+        "/projects/ormiston-interventional-1.jpg", "/projects/ormiston-interventional-2.jpg"
       ]
     }
   ];
@@ -465,16 +502,27 @@ document.addEventListener('DOMContentLoaded', () => {
   const projectsGrid = document.getElementById('projects-grid');
   
   if (projectsGrid) {
-    const renderProjects = (filterType = 'All') => {
+    // Current filter states
+    let currentSectorFilter = 'All';
+    let currentStatusFilter = 'All';
+
+    const renderProjects = () => {
       // Clear grid
       projectsGrid.innerHTML = '';
       
-      const filtered = filterType === 'All' 
-        ? projectsData 
-        : projectsData.filter(p => p.type === filterType);
-        
       const isHomepage = projectsGrid.classList.contains('homepage-projects-grid');
-      const projectsToRender = isHomepage ? filtered.slice(0, 3) : filtered;
+      let projectsToRender = [];
+
+      if (isHomepage) {
+        // Only show The Stables (5), 5 Albert St (6), Exchange (3) on homepage
+        projectsToRender = projectsData.filter(p => [5, 6, 3].includes(p.id));
+      } else {
+        projectsToRender = projectsData.filter(p => {
+          const matchSector = currentSectorFilter === 'All' || p.sector === currentSectorFilter;
+          const matchStatus = currentStatusFilter === 'All' || p.status === currentStatusFilter;
+          return matchSector && matchStatus;
+        });
+      }
 
       projectsToRender.forEach((project, index) => {
         const delayClass = `delay-${(index % 8) + 1}`; 
@@ -484,12 +532,12 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="project-info">
               <div>
                 <h3 class="project-title">${project.title}</h3>
-                <span class="project-category-pill">${project.category}</span>
+                <span class="project-category-pill">${project.sector}</span>
               </div>
               <ul class="project-meta">
-                <li><i data-lucide="map-pin"></i> ${project.location}</li>
-                <li><i data-lucide="calendar"></i> ${project.year}</li>
-                <li><i data-lucide="maximize"></i> ${project.size}</li>
+                <li><i data-lucide="calendar"></i> ${project.completion}</li>
+                <li><i data-lucide="circle-dollar-sign"></i> ${project.value}</li>
+                <li><i data-lucide="check-circle"></i> ${project.status}</li>
               </ul>
             </div>
             <div class="project-image-wrapper">
@@ -521,7 +569,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Initial render
-    renderProjects('All');
+    renderProjects();
 
     // Filter Logic
     const filterPills = document.querySelectorAll('.filter-pill');
@@ -530,9 +578,17 @@ document.addEventListener('DOMContentLoaded', () => {
         pill.addEventListener('click', () => {
           filterPills.forEach(p => p.classList.remove('active'));
           pill.classList.add('active');
-          const type = pill.dataset.filter;
-          renderProjects(type);
+          currentSectorFilter = pill.dataset.filter;
+          renderProjects();
         });
+      });
+    }
+
+    const statusToggle = document.getElementById('status-toggle');
+    if (statusToggle) {
+      statusToggle.addEventListener('change', (e) => {
+        currentStatusFilter = e.target.checked ? 'Complete' : 'All';
+        renderProjects();
       });
     }
   }
@@ -544,67 +600,38 @@ document.addEventListener('DOMContentLoaded', () => {
     const teamData = [
       {
         id: 1,
-        name: "Sarah Williams",
-        role: "Senior Project Manager",
-        qualifications: "M.Arch, PMP",
-        expertise: "Commercial & Infrastructure",
-        imageUrl: "/team/team_member_1.png"
+        name: "Kyle Mingins",
+        role: "Founder & Director",
+        description: "Kyle is a highly capable and dedicated property professional with 21+ years of experience in significant projects throughout New Zealand, Australia, and the United Kingdom.\n\nDuring Kyle’s time in the industry he has delivered a variety of major projects for both institutional and private clients across a range of sectors including Commercial, Mixed Use, Residential, Sports & Recreation and Mixed Use developments.\n\nAs the founding Director of KMA, Kyle is actively involved in the front end of all KMA projects ensuring that the project foundations are set up to a high standard to ensure successful project outcomes.\n\nKyle brings a consistent and grounded approach to motivate and lead project teams which has proven effective in completing numerous high-profile projects on time and on budget.",
+        imageUrl: "/team/team-kyle-mingins.jpg"
       },
       {
         id: 2,
-        name: "David Chen",
-        role: "Senior Development Advisor",
-        qualifications: "B.Prop, MPINZ",
-        expertise: "Feasibility & Site Analysis",
-        imageUrl: "/team/team_member_2.png"
+        name: "Mark Sheridan",
+        role: "Senior Associate",
+        description: "Mark is an experienced project leader with over 15 years of delivering projects in both the UK and New Zealand.\n\nWith nearly a decade’s experience in the main contracting sector, Mark provides extensive technical construction skills as well as having built an industry recognized reputation for project delivery.\n\nMark’s experience in leading major projects is second to none. His experience in project ownership & delivery makes him a favourite for both institutional and private developers.",
+        imageUrl: "/team/team_member_2.png" // No image provided for Mark Sheridan in the list
       },
       {
         id: 3,
-        name: "Elena Rodriguez",
-        role: "Design & Interface Manager",
-        qualifications: "B.Arch, ANZIA",
-        expertise: "Client Interface & Fitout",
-        imageUrl: "/team/team_member_3.png"
+        name: "Hirusha Fernando",
+        role: "Associate",
+        description: "Hirusha is a construction project and development management professional with over 12 years’ experience across New Zealand, Australia and the Asia-Pacific region.\n\nHe has led complex commercial, property and government projects from early definition through to delivery, with experience across clients including Kiwi Property, Precinct Properties, Centuria, Todd Property, the Department of Corrections, Whangarei District Council, MPI and MSD.\n\nHis key strengths are in development management and front-end project leadership, including feasibility, procurement strategy, governance, stakeholder alignment, risk, programme and delivery planning.",
+        imageUrl: "/team/team-hirusha-fernando.jpg"
       },
       {
         id: 4,
-        name: "Marcus Johnson",
-        role: "Senior Quantity Surveyor",
-        qualifications: "B.Const, MNZIQS",
-        expertise: "Cost Control & Estimating",
-        imageUrl: "/team/team_member_4.png"
+        name: "Bryce Redman",
+        role: "Project Director",
+        description: "Bryce brings extensive experience in providing end-to-end development and project management services across a diverse portfolio of commercial, residential, and mixed-use projects throughout New Zealand. His expertise encompasses the full development lifecycle, including site acquisition and due diligence, feasibility assessment, planning and consenting, stakeholder engagement, design management, procurement strategy, construction delivery, and project completion.\n\nHe has a proven track record of successfully leading multidisciplinary teams, managing complex stakeholder relationships, and delivering high-quality developments that achieve both commercial and project objectives.",
+        imageUrl: "/team/team-bryce-redman.jpg"
       },
       {
         id: 5,
-        name: "Aisha Patel",
+        name: "Mark Hamilton",
         role: "Project Director",
-        qualifications: "B.E. Civil, PMP",
-        expertise: "Project Lifecycle & Delivery",
-        imageUrl: "/team/team_member_5.png"
-      },
-      {
-        id: 6,
-        name: "Tomoko Sato",
-        role: "Development Advisory Specialist",
-        qualifications: "M.Prop, MPINZ",
-        expertise: "Property Due Diligence",
-        imageUrl: "/team/team_member_6.png"
-      },
-      {
-        id: 7,
-        name: "James Nguyen",
-        role: "Project Controls Manager",
-        qualifications: "B.Com, PMP",
-        expertise: "Scheduling & Risk Analysis",
-        imageUrl: "/team/team_member_7.png"
-      },
-      {
-        id: 8,
-        name: "Chloe Bennett",
-        role: "Senior Project Manager",
-        qualifications: "B.Const, MNZIOB",
-        expertise: "Contract Administration",
-        imageUrl: "/team/team_member_8.png"
+        description: "Mark is a highly experienced construction professional with 30 + years of experience representing Tier One organisations throughout New Zealand, Australia, Asia Pacific, the United Kingdom and Europe.\n\nMark has represented Morgan Stanley, Macquarie, Google, Goldman Sachs, UBS, Lehman Brothers and others. Mark was the APAC program lead for Google Asia Pacific and brings a wealth of commercial and industrial experience to the KMA team.\n\nMark’s combination of trade background with executive leadership has given Mark a unique experience to deliver successful outcomes",
+        imageUrl: "/team/team-mark-hamilton.jpg"
       }
     ];
 
@@ -621,8 +648,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <h3 class="team-name">${member.name}</h3>
               <p class="team-role">${member.role}</p>
               <div class="team-meta">
-                <span class="meta-item"><i data-lucide="graduation-cap"></i> ${member.qualifications}</span>
-                <span class="meta-item"><i data-lucide="briefcase"></i> ${member.expertise}</span>
+                <p>${member.description.replace(/\n/g, '<br>')}</p>
               </div>
             </div>
           </div>
@@ -663,21 +689,23 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Metadata
     const metaList = document.getElementById('project-metadata-list');
-    if (metaList && project.metadata) {
-      project.metadata.forEach(item => {
-        let icon = 'info';
-        if (item.key === 'Client') icon = 'user';
-        if (item.key === 'Type') icon = 'briefcase';
-        if (item.key === 'Year') icon = 'calendar';
-        if (item.key === 'Size') icon = 'maximize';
-        if (item.key === 'Floors') icon = 'layers';
-        if (item.key === 'Location') icon = 'map-pin';
-        if (item.key === 'Services') icon = 'wrench';
-        if (item.key === 'Status') icon = 'check-circle';
-        
-        const li = document.createElement('li');
-        li.innerHTML = `<span class="metadata-label"><i data-lucide="${icon}"></i> ${item.key}</span> <span class="metadata-value">${item.value}</span>`;
-        metaList.appendChild(li);
+    if (metaList && project) {
+      const metaItems = [
+        { key: 'Client', value: project.client, icon: 'user' },
+        { key: 'Sector', value: project.sector, icon: 'briefcase' },
+        { key: 'Completion', value: project.completion, icon: 'calendar' },
+        { key: 'Value', value: project.value, icon: 'circle-dollar-sign' },
+        { key: 'Delivery', value: project.delivery, icon: 'truck' },
+        { key: 'Services', value: project.services, icon: 'wrench' },
+        { key: 'Status', value: project.status, icon: 'check-circle' }
+      ];
+      
+      metaItems.forEach(item => {
+        if (item.value) {
+          const li = document.createElement('li');
+          li.innerHTML = `<span class="metadata-label"><i data-lucide="${item.icon}"></i> ${item.key}</span> <span class="metadata-value">${item.value}</span>`;
+          metaList.appendChild(li);
+        }
       });
     }
 
@@ -794,12 +822,12 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="project-info">
               <div>
                 <h3 class="project-title">${project.title}</h3>
-                <span class="project-category-pill">${project.category}</span>
+                <span class="project-category-pill">${project.sector}</span>
               </div>
               <ul class="project-meta">
-                <li><i data-lucide="map-pin"></i> ${project.location}</li>
-                <li><i data-lucide="calendar"></i> ${project.year}</li>
-                <li><i data-lucide="maximize"></i> ${project.size}</li>
+                <li><i data-lucide="calendar"></i> ${project.completion}</li>
+                <li><i data-lucide="circle-dollar-sign"></i> ${project.value}</li>
+                <li><i data-lucide="check-circle"></i> ${project.status}</li>
               </ul>
             </div>
             <div class="project-image-wrapper">
@@ -914,22 +942,22 @@ document.addEventListener('DOMContentLoaded', () => {
   if (testimonialsContainers.length > 0) {
     const testimonialsData = [
       {
-        quote: "Kyle and the KMA team provided outstanding leadership on our commercial development. Their proactive communication and 'no surprises' approach kept the project on track and under budget.",
-        clientName: "Mark Harrison",
-        clientBusiness: "Harrison Properties Ltd",
-        projectImage: "/projects/skyline-01.jpg"
+        quote: "KMA has contributed significantly on all projects with Ignite, leading and managing the delivery of these key projects in a positive and proactive way, ensuring great outcomes for the client. Their detailed management experience and hands on support to the consultant group creates an environment where all can perform to their best in delivering highly complex projects.",
+        clientName: "Jeremy Whelan - Managing Director",
+        clientBusiness: "Ignite",
+        projectImage: "/projects/exchange-1.jpg" // using placeholder images
       },
       {
-        quote: "KMA's advisory services were instrumental in securing resource consents and managing feasibility for our residential project. Their expertise is unmatched.",
-        clientName: "Sarah Jenkins",
-        clientBusiness: "Zenith Residential Group",
-        projectImage: "/projects/zenith-01.jpg"
+        quote: "KMA’s commitment to ensuring the success of the West Stand project was highly valued and Eden Park was grateful for the expertise and support in driving the project forward. We look forward to continued collaboration in the future building on what has already been achieved.",
+        clientName: "Nick Sautner - CEO",
+        clientBusiness: "Eden Park Trust",
+        projectImage: "/projects/eden-park-west-stand-1.jpg" // using placeholder images
       },
       {
-        quote: "Highly professional and collaborative. The team navigated complex site logic and delivered a state-of-the-art facility. We look forward to partnering again.",
-        clientName: "David Vance",
-        clientBusiness: "Global Tech Logistics",
-        projectImage: "/projects/horizon-01.jpg"
+        quote: "KMA, as Development Managers on 5 Albert Street have contributed significantly to the initial phase of the Development including project marketing, Council consenting, and Design Management.",
+        clientName: "Peter Wall",
+        clientBusiness: "MAP Limited",
+        projectImage: "/projects/5-albert-street-1.jpg" // using placeholder images
       }
     ];
 

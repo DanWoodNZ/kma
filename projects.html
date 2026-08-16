@@ -69,11 +69,26 @@
       <h1 class="section-heading-text">Explore a curated collection of our projects, each showcasing our commitment to
         innovative design and precise execution.</h1>
 
-      <div class="projects-filters">
-        <button class="filter-pill active" data-filter="All"><i data-lucide="layers"></i> All</button>
-        <button class="filter-pill" data-filter="Residential"><i data-lucide="home"></i> Residential</button>
-        <button class="filter-pill" data-filter="Commercial"><i data-lucide="building-2"></i> Commercial</button>
-        <button class="filter-pill" data-filter="Others"><i data-lucide="factory"></i> Others</button>
+      <div class="projects-filters-container">
+        <div class="projects-filters">
+          <button class="filter-pill active" data-filter="All"><i data-lucide="layers"></i> All</button>
+          <button class="filter-pill" data-filter="Sport & Recreation"><i data-lucide="dumbbell"></i> Sport</button>
+          <button class="filter-pill" data-filter="Health"><i data-lucide="heart-pulse"></i> Health</button>
+          <button class="filter-pill" data-filter="Commercial"><i data-lucide="building-2"></i> Commercial</button>
+          <button class="filter-pill" data-filter="Residential"><i data-lucide="home"></i> Residential</button>
+          <button class="filter-pill" data-filter="Mixed Use"><i data-lucide="layers"></i> Mixed Use</button>
+          <button class="filter-pill" data-filter="Tourism & Leisure"><i data-lucide="utensils"></i> Leisure</button>
+          <button class="filter-pill" data-filter="Industrial"><i data-lucide="factory"></i> Industrial</button>
+        </div>
+
+        <div class="status-toggle-wrapper">
+          <span class="status-label">All</span>
+          <label class="switch">
+            <input type="checkbox" id="status-toggle">
+            <span class="slider round"></span>
+          </label>
+          <span class="status-label">Completed</span>
+        </div>
       </div>
     </div>
 
@@ -118,7 +133,13 @@
         <p>PO Box 40367<br>Glenfield</p>
       </div>
     </div>
-    <div class="container footer-bottom fade-up delay-4">
+    
+    <div class="giant-footer-svg fade-up delay-4">
+      <img src="/db-desktop.svg" alt="Design + Build" class="svg-desktop">
+      <img src="/db-mobile.svg" alt="Design + Build" class="svg-mobile">
+    </div>
+
+    <div class="container footer-bottom fade-up delay-5">
       <p>2026 KMA Limited &copy; All Rights Reserved.</p>
     </div>
   </footer>

@@ -256,6 +256,14 @@ a:hover {
   text-align: center;
 }
 
+.section-subtext {
+  max-width: 60%;
+  margin: 0 auto;
+  font-size: 1.3rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
 /* --- Hero Section --- */
 .hero-new {
   position: relative;
@@ -557,30 +565,48 @@ a:hover {
 .timeline-step {
   position: relative;
   z-index: 1;
-  width: 28%;
-  /* Starts strictly inside the column */
   transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
   cursor: pointer;
-}
-
-.timeline-step.in-view {
-  width: 32%;
-  /* Grows slightly along timeline */
 }
 
 .step-1 {
   align-self: flex-start;
   margin-left: 0;
+  width: 40%;
+}
+
+.timeline-step.in-view.step-1 {
+  width: 45%;
 }
 
 .step-2 {
   align-self: flex-start;
-  margin-left: 33.33%;
+  margin-left: 28%;
+  width: 48%;
+}
+
+.timeline-step.in-view.step-2 {
+  width: 53%;
 }
 
 .step-3 {
   align-self: flex-start;
-  margin-left: 62%;
+  margin-left: 55%;
+  width: 35%;
+}
+
+.timeline-step.in-view.step-3 {
+  width: 40%;
+}
+
+.step-4 {
+  align-self: flex-start;
+  margin-left: 66.66%;
+  width: 30%;
+}
+
+.timeline-step.in-view.step-4 {
+  width: 33.33%;
 }
 
 /* Keeps it inside container */
@@ -1163,6 +1189,37 @@ a:hover {
   display: block;
 }
 
+.giant-footer-svg {
+  width: 100%;
+  padding: 0 50px;
+  box-sizing: border-box;
+  margin-bottom: 2rem;
+  opacity: 0.5;
+  display: flex;
+  justify-content: center;
+}
+
+.giant-footer-svg img {
+  width: 100%;
+  height: auto;
+}
+
+img.svg-mobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  img.svg-desktop {
+    display: none;
+  }
+  img.svg-mobile {
+    display: block;
+  }
+  .giant-footer-svg {
+    padding: 0 20px; /* Reduce padding on mobile to match responsive container padding if needed, but 50px is ok too. I'll stick with 20px for mobile since container padding is usually smaller on mobile. */
+  }
+}
+
 .mt-4 {
   margin-top: 2rem;
 }
@@ -1425,13 +1482,95 @@ a:hover {
   margin-right: auto;
 }
 
+.projects-filters-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 4rem;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
 .projects-filters {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.5rem;
-  margin-bottom: 4rem;
 }
+
+/* Status Toggle Switch */
+.status-toggle-wrapper {
+  display: flex;
+  align-items: center;
+  padding-top: 2rem;
+  gap: 1rem;
+}
+
+.status-label {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-color);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #333;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+}
+
+input:checked+.slider {
+  background-color: var(--accent-color);
+}
+
+input:focus+.slider {
+  box-shadow: 0 0 1px var(--accent-color);
+}
+
+input:checked+.slider:before {
+  transform: translateX(24px);
+  background-color: #000;
+}
+
+.slider.round {
+  border-radius: 26px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
 
 .filter-pill {
   display: inline-flex;
@@ -1913,8 +2052,8 @@ a:hover {
 
 .team-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
+  grid-template-columns: 1fr;
+  gap: 3rem;
 }
 
 .team-card {
@@ -1925,6 +2064,21 @@ a:hover {
   border-radius: 4px;
   overflow: hidden;
   transition: transform 0.3s ease, border-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .team-card {
+    flex-direction: row;
+    width: 60%;
+  }
+  .team-card:nth-child(odd) {
+    justify-self: flex-start;
+  }
+  .team-card:nth-child(even) {
+    justify-self: flex-end;
+  }
 }
 
 .team-card:hover {
@@ -1936,6 +2090,14 @@ a:hover {
   width: 100%;
   aspect-ratio: 1/1;
   overflow: hidden;
+  flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+  .team-image-wrapper {
+    width: 300px;
+    aspect-ratio: 3/4;
+  }
 }
 
 .team-image {
@@ -1951,18 +2113,21 @@ a:hover {
 }
 
 .team-info {
-  padding: 2rem;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .team-name {
-  font-size: 1.4rem;
-  margin-bottom: 0.3rem;
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
   color: var(--text-color);
 }
 
 .team-role {
   color: var(--accent-color);
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -1972,17 +2137,11 @@ a:hover {
 .team-meta {
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 1rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding-top: 1.5rem;
-}
-
-.meta-item {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
+  padding-top: 2rem;
   color: var(--text-muted);
-  font-size: 0.9rem;
+  line-height: 1.8;
 }
 
 .meta-item i {
@@ -1992,7 +2151,7 @@ a:hover {
 
 @media (max-width: 1024px) {
   .team-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
   }
 }
 
@@ -2619,7 +2778,8 @@ body.loading .hero-logo {
   background-position: center;
   background-repeat: no-repeat;
   opacity: 0.15;
-  filter: brightness(0); /* forces white paths to black */
+  filter: brightness(0);
+  /* forces white paths to black */
   pointer-events: none;
   z-index: 1;
 }
