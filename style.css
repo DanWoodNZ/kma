@@ -1202,11 +1202,14 @@ img.svg-mobile {
   img.svg-desktop {
     display: none;
   }
+
   img.svg-mobile {
     display: block;
   }
+
   .giant-footer-svg {
-    padding: 0 20px; /* Reduce padding on mobile to match responsive container padding if needed, but 50px is ok too. I'll stick with 20px for mobile since container padding is usually smaller on mobile. */
+    padding: 0 20px;
+    /* Reduce padding on mobile to match responsive container padding if needed, but 50px is ok too. I'll stick with 20px for mobile since container padding is usually smaller on mobile. */
   }
 }
 
@@ -1384,7 +1387,7 @@ img.svg-mobile {
 .fade-up {
   opacity: 0;
   transform: translateY(40px);
-  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1), transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
   will-change: opacity, transform;
 }
 
@@ -1394,35 +1397,35 @@ img.svg-mobile {
 }
 
 .delay-1 {
-  transition-delay: 0.1s;
+  transition-delay: 0.05s;
 }
 
 .delay-2 {
-  transition-delay: 0.2s;
+  transition-delay: 0.1s;
 }
 
 .delay-3 {
-  transition-delay: 0.3s;
+  transition-delay: 0.15s;
 }
 
 .delay-4 {
-  transition-delay: 0.4s;
+  transition-delay: 0.2s;
 }
 
 .delay-5 {
-  transition-delay: 0.5s;
+  transition-delay: 0.25s;
 }
 
 .delay-6 {
-  transition-delay: 0.6s;
+  transition-delay: 0.3s;
 }
 
 .delay-7 {
-  transition-delay: 0.7s;
+  transition-delay: 0.35s;
 }
 
 .delay-8 {
-  transition-delay: 0.8s;
+  transition-delay: 0.4s;
 }
 
 /* --- Projects Page --- */
@@ -1759,7 +1762,7 @@ input:checked+.slider:before {
 
 .single-project-description {
   font-family: var(--font-heading);
-  font-size: clamp(1.2rem, 1.8vw, 1.8rem);
+  font-size: clamp(1rem, 1.2vw, 1.25rem);
   line-height: 1.6;
   margin-bottom: 5rem;
   font-weight: 400;
@@ -1963,14 +1966,15 @@ input:checked+.slider:before {
 }
 
 .history-founder-section {
-  padding-top: 4rem;
+  padding-top: 8rem;
 }
 
 .history-grid {
-  display: grid;
-  grid-template-columns: 1fr 400px;
-  gap: 4rem;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  text-align: center;
+  gap: 4rem;
 }
 
 .history-content {
@@ -1978,9 +1982,9 @@ input:checked+.slider:before {
 }
 
 .history-content .section-heading-text {
-  text-align: left;
-  margin-left: 0;
-  margin-right: 0;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
   max-width: 100%;
   margin-bottom: 1.5rem;
 }
@@ -2063,9 +2067,11 @@ input:checked+.slider:before {
     flex-direction: row;
     width: 60%;
   }
+
   .team-card:nth-child(odd) {
     justify-self: flex-start;
   }
+
   .team-card:nth-child(even) {
     justify-self: flex-end;
   }

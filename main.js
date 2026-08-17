@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const loaderContainer = document.getElementById('lottie-container');
   let lottieAnimation = null;
   const preloaderSkipped = document.body.classList.contains('preloader-skipped');
-  
+
   if (loaderContainer && typeof lottie !== 'undefined' && !preloaderSkipped) {
     lottieAnimation = lottie.loadAnimation({
       container: loaderContainer,
@@ -24,43 +24,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function checkAndHideLoader() {
     if (loaderDismissed) return;
-    
+
     // Hide only if all conditions met: min time elapsed AND page fully loaded AND hero video ready
     if (minTimeElapsed && pageLoaded && videoLoaded) {
       loaderDismissed = true;
-      
+
       // Save session flag so the loader is skipped on subsequent visits in the same session
       try {
         sessionStorage.setItem('kma-preloader-shown', 'true');
       } catch (e) {
         console.warn('sessionStorage is not accessible', e);
       }
-      
+
       const loader = document.getElementById('site-loader');
       const lottieContainer = document.getElementById('lottie-container');
-      
+
       // Stage 1: Fade out the Lottie player container first
       if (lottieContainer) {
         lottieContainer.classList.add('fade-out');
       }
-      
+
       // Stage 2: After the Lottie player finishes fading out, fade out the background overlay
       setTimeout(() => {
         if (loader) {
           loader.classList.add('fade-out');
         }
-        
+
         // Remove 'loading' and add 'loading-reveal' to trigger logo & nav entry animations
         document.body.classList.add('loading-reveal');
         document.body.classList.remove('loading');
-        
+
         // Destroy the animation after it fades out to save CPU
         setTimeout(() => {
           if (lottieAnimation) {
             lottieAnimation.destroy();
           }
         }, 1000);
-        
+
         // Clean up: Remove loading-reveal class after transition is fully complete
         // so that normal scroll transitions behave normally afterwards
         setTimeout(() => {
@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.unobserve(entry.target);
       }
     });
-  }, { root: null, rootMargin: '0px 0px -5% 0px', threshold: 0.05 });
+  }, { root: null, rootMargin: '0px 0px 100px 0px', threshold: 0.05 });
 
   // Will observe later after DOM is fully ready if needed, 
   // but we can just select them now
@@ -159,13 +159,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const observerOptions = {
     root: null,
     rootMargin: '-20% 0px -20% 0px',
-    threshold: 0.4 
+    threshold: 0.4
   };
 
   const timelineObserver = new IntersectionObserver((entries) => {
     // Only animate on scroll for desktop
-    if (window.innerWidth <= 768) return; 
-    
+    if (window.innerWidth <= 768) return;
+
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('in-view');
@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const steps = document.querySelectorAll('.timeline-step');
   steps.forEach(step => {
     timelineObserver.observe(step);
-    
+
     // Tap to expand for mobile
     step.addEventListener('click', () => {
       if (window.innerWidth <= 768) {
@@ -198,10 +198,10 @@ document.addEventListener('DOMContentLoaded', () => {
   if (cursor) {
     let mouseX = 0;
     let mouseY = 0;
-    
+
     let cursorX = 0;
     let cursorY = 0;
-    
+
     window.addEventListener('mousemove', (e) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
@@ -210,10 +210,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const renderCursor = () => {
       cursorX += (mouseX - cursorX) * 0.2;
       cursorY += (mouseY - cursorY) * 0.2;
-      
+
       cursor.style.left = `${cursorX}px`;
       cursor.style.top = `${cursorY}px`;
-      
+
       requestAnimationFrame(renderCursor);
     };
     requestAnimationFrame(renderCursor);
@@ -295,9 +295,9 @@ document.addEventListener('DOMContentLoaded', () => {
       viewport.style.scrollBehavior = 'smooth';
       viewport.style.cursor = '';
       // Tiny nudge to trigger CSS snap re-evaluation
-      viewport.scrollBy(1, 0); 
+      viewport.scrollBy(1, 0);
       viewport.scrollBy(-1, 0);
-      
+
       // Reset isDragging after click events would have fired
       setTimeout(() => isDragging = false, 50);
     });
@@ -334,7 +334,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }, 100);
   }
-  
+
   // --- Projects Data & Rendering Logic ---
   const projectsData = [
     {
@@ -345,7 +345,7 @@ document.addEventListener('DOMContentLoaded', () => {
       value: "$8m",
       delivery: "ECI Fixed Price",
       services: "Project Management, Engineer to Contract",
-      status: "Complete",
+      status: "Current",
       client: "Eden Park Trust",
       image: "/projects/eden-park-west-stand-1.jpg",
       description: "Eden Park is setting a new benchmark for the live event experience in New Zealand with the creation of the Coca-Cola Field Club – a permanent field-level hospitality beneath the goalposts.\n\nDelivered October 2026, the Coca-Cola Field Club provides fans, guests and event organisers a new way to experience sport, entertainment and events at New Zealand’s national stadium.\n\nThis inspirational project was delivered in 9 weeks with KMA providing Project Management and Engineer to the Contract services.",
@@ -390,7 +390,7 @@ document.addEventListener('DOMContentLoaded', () => {
       title: "Bledisloe House",
       sector: "Commercial",
       completion: "2027",
-      value: "Confidential",
+      value: "$70m",
       delivery: "Design & Build",
       services: "Project Management, Engineer to Contract",
       status: "Current",
@@ -406,7 +406,7 @@ document.addEventListener('DOMContentLoaded', () => {
       title: "The Stables - Parkview",
       sector: "Residential",
       completion: "2027",
-      value: "$35m",
+      value: "$155m",
       delivery: "Design & Build",
       services: "Project Management, Engineer to Contract",
       status: "Current",
@@ -449,6 +449,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "/projects/hilton-1.jpg", "/projects/hilton-2.jpg", "/projects/hilton-3.jpg"
       ]
     },
+    /*
     {
       id: 8,
       title: "Symphony Centre",
@@ -465,6 +466,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "/projects/symphony-centre-1.webp", "/projects/symphony-centre-2.webp", "/projects/symphony-centre-3.webp"
       ]
     },
+    */
     {
       id: 9,
       title: "Takanini Industrial",
@@ -489,7 +491,7 @@ document.addEventListener('DOMContentLoaded', () => {
       value: "$2.5m",
       delivery: "Design & Build / Turnkey",
       services: "Project Management, Engineer to Contract",
-      status: "Complete",
+      status: "Current",
       client: "Canopy Imaging",
       image: "/projects/ormiston-interventional-1.jpg",
       description: "KMA was engaged by Canopy Imaging in 2025 to provide a Design & Build delivery strategy for a 500sqm Interventional Suite at Ormiston Hospital next to their existing tenancy.\n\nWorking with Acept, MA Studio and Edge Interiors, KMA was able to provide a procurement process which enabled the project to be delivered in a fastrack manner.",
@@ -500,7 +502,7 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   const projectsGrid = document.getElementById('projects-grid');
-  
+
   if (projectsGrid) {
     // Current filter states
     let currentSectorFilter = 'All';
@@ -509,7 +511,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const renderProjects = () => {
       // Clear grid
       projectsGrid.innerHTML = '';
-      
+
       const isHomepage = projectsGrid.classList.contains('homepage-projects-grid');
       let projectsToRender = [];
 
@@ -525,8 +527,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       projectsToRender.forEach((project, index) => {
-        const delayClass = `delay-${(index % 8) + 1}`; 
-        
+        const delayClass = `delay-${(index % 8) + 1}`;
+
         const cardHTML = `
           <div class="project-card fade-up ${delayClass}" onclick="window.location.href='/project.html?id=${project.id}'">
             <div class="project-info">
@@ -557,7 +559,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('#projects-grid .fade-up').forEach(el => {
         globalFadeObserver.observe(el);
       });
-      
+
       // Re-attach custom cursor events for new cards
       const newCards = projectsGrid.querySelectorAll('.project-card');
       if (cursor && newCards.length > 0) {
@@ -602,7 +604,7 @@ document.addEventListener('DOMContentLoaded', () => {
         id: 1,
         name: "Kyle Mingins",
         role: "Founder & Director",
-        description: "Kyle is a highly capable and dedicated property professional with 21+ years of experience in significant projects throughout New Zealand, Australia, and the United Kingdom.\n\nDuring Kyle’s time in the industry he has delivered a variety of major projects for both institutional and private clients across a range of sectors including Commercial, Mixed Use, Residential, Sports & Recreation and Mixed Use developments.\n\nAs the founding Director of KMA, Kyle is actively involved in the front end of all KMA projects ensuring that the project foundations are set up to a high standard to ensure successful project outcomes.\n\nKyle brings a consistent and grounded approach to motivate and lead project teams which has proven effective in completing numerous high-profile projects on time and on budget.",
+        description: "Kyle is a highly capable and dedicated property professional with 21+ years of experience in significant projects throughout New Zealand, Australia, and the United Kingdom.\n\nDuring Kyle’s time in the industry he has delivered a variety of major projects for both institutional and private clients across a range of sectors including Commercial, Mixed Use, Residential, Sports & Recreation and Hospitality developments.\n\nAs the founding Director of KMA, Kyle is actively involved in the front end of all KMA projects ensuring that the project foundations are set up to a high standard to ensure successful project outcomes.\n\nKyle brings a consistent and grounded approach to motivate and lead project teams which has proven effective in completing numerous high-profile projects on time and on budget.",
         imageUrl: "/team/team-kyle-mingins.jpg"
       },
       {
@@ -670,23 +672,23 @@ document.addEventListener('DOMContentLoaded', () => {
   const isProjectPage = currentPath.endsWith('project.html') || currentPath.endsWith('/project');
   if (isProjectPage) {
     const urlParams = new URLSearchParams(window.location.search);
-    const projectId = parseInt(urlParams.get('id'), 10) || 1; 
-    
+    const projectId = parseInt(urlParams.get('id'), 10) || 1;
+
     const project = projectsData.find(p => p.id === projectId) || projectsData[0];
 
     // Hydrate DOM
     const heroBg = document.getElementById('project-hero-bg');
     if (heroBg) heroBg.style.backgroundImage = `url('${project.image}')`;
-    
+
     const titleEl = document.getElementById('project-title');
     if (titleEl) titleEl.textContent = project.title;
-    
+
     const sidebarTitleEl = document.getElementById('project-sidebar-title');
     if (sidebarTitleEl) sidebarTitleEl.textContent = project.title;
-    
+
     const descEl = document.getElementById('project-description');
     if (descEl) descEl.textContent = project.description;
-    
+
     // Metadata
     const metaList = document.getElementById('project-metadata-list');
     if (metaList && project) {
@@ -699,7 +701,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { key: 'Services', value: project.services, icon: 'wrench' },
         { key: 'Status', value: project.status, icon: 'check-circle' }
       ];
-      
+
       metaItems.forEach(item => {
         if (item.value) {
           const li = document.createElement('li');
@@ -713,9 +715,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const galleryContainer = document.getElementById('project-gallery');
     if (galleryContainer && project.gallery) {
       const initMasonry = () => {
-        galleryContainer.innerHTML = ''; 
-        const columns = window.innerWidth <= 768 ? 1 : 2; 
-        
+        galleryContainer.innerHTML = '';
+        const columns = window.innerWidth <= 768 ? 1 : 2;
+
         const colElements = [];
         for (let i = 0; i < columns; i++) {
           const col = document.createElement('div');
@@ -723,22 +725,22 @@ document.addEventListener('DOMContentLoaded', () => {
           galleryContainer.appendChild(col);
           colElements.push(col);
         }
-        
+
         project.gallery.forEach((imgUrl, index) => {
           const item = document.createElement('div');
           item.classList.add('masonry-item');
           item.classList.add('fade-up', `delay-${(index % 4) + 1}`);
           item.innerHTML = `<img src="${imgUrl}" alt="${project.title} gallery image ${index + 1}" loading="lazy">`;
-          
+
           item.addEventListener('click', () => openLightbox(index));
           colElements[index % columns].appendChild(item);
         });
 
         document.querySelectorAll('#project-gallery .fade-up').forEach(el => globalFadeObserver.observe(el));
       };
-      
+
       initMasonry();
-      
+
       let resizeTimer;
       window.addEventListener('resize', () => {
         clearTimeout(resizeTimer);
@@ -753,7 +755,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const lightboxPrev = document.getElementById('lightbox-prev');
     const lightboxNext = document.getElementById('lightbox-next');
     const lightboxCounter = document.getElementById('lightbox-counter');
-    
+
     let currentImageIndex = 0;
 
     const updateLightbox = () => {
@@ -778,17 +780,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (lightbox) {
       lightboxClose.addEventListener('click', closeLightbox);
-      
+
       lightboxNext.addEventListener('click', () => {
         currentImageIndex = (currentImageIndex + 1) % project.gallery.length;
         updateLightbox();
       });
-      
+
       lightboxPrev.addEventListener('click', () => {
         currentImageIndex = (currentImageIndex - 1 + project.gallery.length) % project.gallery.length;
         updateLightbox();
       });
-      
+
       document.addEventListener('keydown', (e) => {
         if (!lightbox.classList.contains('active')) return;
         if (e.key === 'Escape') closeLightbox();
@@ -796,24 +798,24 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'ArrowLeft') lightboxPrev.click();
       });
     }
-    
+
     // --- Explore Other Projects Section Logic ---
     const exploreGrid = document.getElementById('explore-projects-grid');
     if (exploreGrid) {
       // Find the current project's index in the data array
       const currentIndex = projectsData.findIndex(p => p.id === projectId);
       const index = currentIndex !== -1 ? currentIndex : 0;
-      
+
       // Determine the next 3 projects in the array, wrapping around if necessary
       const exploreProjects = [];
       for (let i = 1; i <= 3; i++) {
         const nextIndex = (index + i) % projectsData.length;
         exploreProjects.push(projectsData[nextIndex]);
       }
-      
+
       // Clear container just in case
       exploreGrid.innerHTML = '';
-      
+
       // Render the projects
       exploreProjects.forEach((project, idx) => {
         const delayClass = `delay-${(idx % 8) + 1}`;
@@ -837,12 +839,12 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
         exploreGrid.insertAdjacentHTML('beforeend', cardHTML);
       });
-      
+
       // Re-observe new fade-up elements
       exploreGrid.querySelectorAll('.fade-up').forEach(el => {
         globalFadeObserver.observe(el);
       });
-      
+
       // Re-attach custom cursor hover events for new cards
       const newCards = exploreGrid.querySelectorAll('.project-card');
       if (cursor && newCards.length > 0) {
@@ -852,7 +854,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       }
     }
-    
+
     // Re-initialize Lucide for newly injected icons
     if (typeof lucide !== 'undefined') {
       setTimeout(() => lucide.createIcons(), 100);
@@ -862,19 +864,19 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Parallax & Scroll Effects ---
   window.addEventListener('scroll', () => {
     const scrolled = window.scrollY;
-    
+
     // Homepage video parallax
     const heroVideo = document.querySelector('.hero-bg-video');
     if (heroVideo) {
       heroVideo.style.transform = `translateY(${scrolled * 0.4}px)`;
     }
-    
+
     // Project Page hero background parallax
     const projectHeroBg = document.getElementById('project-hero-bg');
     if (projectHeroBg) {
       projectHeroBg.style.backgroundPositionY = `calc(50% + ${scrolled * 0.4}px)`;
     }
-    
+
     // Project Page Title fade and slide
     const projectTitle = document.getElementById('project-title');
     if (projectTitle) {
@@ -889,7 +891,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (teamHeroBg) {
       teamHeroBg.style.backgroundPositionY = `calc(50% + ${scrolled * 0.4}px)`;
     }
-    
+
     // Team Page Title fade and slide
     const teamHeroTitle = document.getElementById('team-hero-title');
     if (teamHeroTitle) {
@@ -908,7 +910,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (mobileMenuBtn && mobileMenuOverlay && mobileMenuIcon) {
     mobileMenuBtn.addEventListener('click', () => {
       const isActive = mobileMenuOverlay.classList.contains('active');
-      
+
       if (isActive) {
         mobileMenuOverlay.classList.remove('active');
         document.body.classList.remove('no-scroll');
@@ -918,7 +920,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.add('no-scroll');
         mobileMenuIcon.setAttribute('data-lucide', 'x');
       }
-      
+
       if (typeof lucide !== 'undefined') {
         lucide.createIcons({ root: mobileMenuBtn });
       }
@@ -966,7 +968,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="testimonial-slider-wrap">
           <div class="testimonial-slides">
       `;
-      
+
       testimonialsData.forEach((item, index) => {
         html += `
             <div class="testimonial-slide ${index === 0 ? 'active' : ''}" data-index="${index}">
@@ -1038,7 +1040,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (heroScrollBtn) {
     heroScrollBtn.addEventListener('click', () => {
       let targetElement = null;
-      
+
       if (document.querySelector('.project-main-wrapper')) {
         // Project page next section
         targetElement = document.querySelector('.project-main-wrapper');
@@ -1049,7 +1051,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Team page next section
         targetElement = document.querySelector('.history-founder-section');
       }
-      
+
       if (targetElement) {
         // Measure the height of the navbar in its scrolled (compact) state to prevent landing misalignments
         const nav = document.getElementById('main-nav');
@@ -1064,7 +1066,7 @@ document.addEventListener('DOMContentLoaded', () => {
             nav.classList.remove('scrolled');
           }
         }
-        
+
         const yPosition = targetElement.getBoundingClientRect().top + window.scrollY - navHeight;
         window.scrollTo({
           top: yPosition,
