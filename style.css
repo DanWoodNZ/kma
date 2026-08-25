@@ -2115,15 +2115,15 @@ input:checked+.slider:before {
 @media (min-width: 768px) {
   .team-card {
     flex-direction: row;
-    width: 60%;
+    width: 100%;
   }
+}
 
-  .team-card:nth-child(odd) {
-    justify-self: flex-start;
-  }
-
-  .team-card:nth-child(even) {
-    justify-self: flex-end;
+@media (min-width: 1024px) {
+  .team-card {
+    width: 90%;
+    max-width: 1200px;
+    justify-self: center;
   }
 }
 
