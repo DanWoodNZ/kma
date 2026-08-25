@@ -141,18 +141,55 @@ document.addEventListener('DOMContentLoaded', () => {
     globalFadeObserver.observe(el);
   });
 
-  // Sticky Nav Logic
+  // Sticky Nav Logic and Back to Top
   const nav = document.getElementById('main-nav');
   const heroLogo = document.querySelector('.hero-logo');
+  let lastScrollY = window.scrollY;
+
+  const backToTopBtn = document.createElement('button');
+  backToTopBtn.innerHTML = '<i data-lucide="arrow-up"></i>';
+  backToTopBtn.className = 'back-to-top hidden';
+  backToTopBtn.setAttribute('aria-label', 'Back to top');
+  document.body.appendChild(backToTopBtn);
+
+  if (window.lucide) {
+    window.lucide.createIcons();
+  }
+
+  backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
   if (nav) {
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 80) {
+      const currentScrollY = window.scrollY;
+      
+      if (currentScrollY > 80) {
         nav.classList.add('scrolled');
         if (heroLogo) heroLogo.classList.add('fade-out');
       } else {
         nav.classList.remove('scrolled');
         if (heroLogo) heroLogo.classList.remove('fade-out');
       }
+
+      // Hide on scroll down, show on scroll up (only active after hero section approx 500px)
+      if (currentScrollY > 500) {
+        if (currentScrollY > lastScrollY) {
+          nav.classList.add('nav-hidden');
+        } else {
+          nav.classList.remove('nav-hidden');
+        }
+      } else {
+         nav.classList.remove('nav-hidden');
+      }
+
+      if (currentScrollY > 500) {
+        backToTopBtn.classList.remove('hidden');
+      } else {
+        backToTopBtn.classList.add('hidden');
+      }
+
+      lastScrollY = currentScrollY;
     });
   }
 
@@ -612,7 +649,7 @@ document.addEventListener('DOMContentLoaded', () => {
         name: "Mark Sheridan",
         role: "Senior Associate",
         description: "Mark is an experienced project leader with over 15 years of delivering projects in both the UK and New Zealand.\n\nWith nearly a decade’s experience in the main contracting sector, Mark provides extensive technical construction skills as well as having built an industry recognized reputation for project delivery.\n\nMark’s experience in leading major projects is second to none. His experience in project ownership & delivery makes him a favourite for both institutional and private developers.",
-        imageUrl: "/team/team_member_2.png" // No image provided for Mark Sheridan in the list
+        imageUrl: "/team/team-mark-sheridan.jpg"
       },
       {
         id: 3,
@@ -907,18 +944,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
   const mobileMenuIcon = document.getElementById('mobile-menu-icon');
 
-  if (mobileMenuBtn && mobileMenuOverlay && mobileMenuIcon) {
+  if (mobileMenuBtn && mobileMenuOverlay) {
     mobileMenuBtn.addEventListener('click', () => {
       const isActive = mobileMenuOverlay.classList.contains('active');
 
       if (isActive) {
         mobileMenuOverlay.classList.remove('active');
         document.body.classList.remove('no-scroll');
-        mobileMenuIcon.setAttribute('data-lucide', 'menu');
+        mobileMenuBtn.innerHTML = '<i data-lucide="menu"></i>';
       } else {
         mobileMenuOverlay.classList.add('active');
         document.body.classList.add('no-scroll');
-        mobileMenuIcon.setAttribute('data-lucide', 'x');
+        mobileMenuBtn.innerHTML = '<i data-lucide="x"></i>';
       }
 
       if (typeof lucide !== 'undefined') {
@@ -931,7 +968,7 @@ document.addEventListener('DOMContentLoaded', () => {
       link.addEventListener('click', () => {
         mobileMenuOverlay.classList.remove('active');
         document.body.classList.remove('no-scroll');
-        mobileMenuIcon.setAttribute('data-lucide', 'menu');
+        mobileMenuBtn.innerHTML = '<i data-lucide="menu"></i>';
         if (typeof lucide !== 'undefined') {
           lucide.createIcons({ root: mobileMenuBtn });
         }
